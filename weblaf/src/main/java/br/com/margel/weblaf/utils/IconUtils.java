@@ -27,7 +27,7 @@ public class IconUtils implements SwingConstants{
 		}
 	}
 	
-	public static final String IMAGES_DIR = "icons/";
+	public static final String IMAGES_DIR = "images/";
 	
 	public static ImageIcon getImageIcon(String name){
 		try {

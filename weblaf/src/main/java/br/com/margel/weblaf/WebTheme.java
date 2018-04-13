@@ -20,6 +20,12 @@ public interface WebTheme {
 	Color TEXT_FIELD_SELECTION_BG = Color.DARK_GRAY;
 	Color TEXT_FIELD_SELECTION_FG = Color.WHITE;
 	
+	Color LIST_BG = Color.WHITE;
+	Color LIST_FG = Color.DARK_GRAY;
+	Color LIST_SELECTION_BG = new Color(230, 240, 240);
+	Color LIST_SELECTION_FG = Color.BLACK;
+	Font LIST_FONT = new Font("Arial", Font.PLAIN, 12);
+	
 	Color TEXTAREA_FG = Color.DARK_GRAY;
 	Color TEXTAREA_BG = Color.WHITE;
 	Font TEXTAREA_FONT = new Font("Arial", Font.PLAIN, 12);
@@ -121,9 +127,20 @@ public interface WebTheme {
 	Color TABLE_HEADER_BG = Color.WHITE;
 	Color TABLE_HEADER_FG = Color.BLACK;
 	
-	ImageIcon FILECHOOSER_UP_ICON = IconUtils.getImageIcon("up25x25.png");
+	ImageIcon FILECHOOSER_DIR_ICON = IconUtils.getImageIcon("close_folder_yellow20x20.png");
+	ImageIcon FILECHOOSER_FILE_ICON = IconUtils.getImageIcon("file20x20.png");
+	ImageIcon FILECHOOSER_COMPUTER_ICON = IconUtils.getImageIcon("computer20x20.png");
+	ImageIcon FILECHOOSER_HARD_DRIVE_ICON = IconUtils.getImageIcon("storage20x20.png");
+	ImageIcon FILECHOOSER_FLOPPY_ICON = IconUtils.getImageIcon("floppy20x20.png");
+	ImageIcon FILECHOOSER_UP_ICON = IconUtils.getImageIcon("folder_up25x25.png");
 	ImageIcon FILECHOOSER_NEWFOLDER_ICON = IconUtils.getImageIcon("new_folder25x25.png");
-	ImageIcon FILECHOOSER_HOME_ICON = IconUtils.getImageIcon("home25x25.png");
+	ImageIcon FILECHOOSER_HOME_ICON = IconUtils.getImageIcon("desktop25x25.png");
 	ImageIcon FILECHOOSER_LIST_VIEW_ICON = IconUtils.getImageIcon("list25x25.png");
 	ImageIcon FILECHOOSER_DETAIL_VIEW_ICON = IconUtils.getImageIcon("detail25x25.png");
+	ImageIcon FILECHOOSER_VIEW_MENU_ICON = IconUtils.getImageIcon("detail25x25.png");
+	
+	Color TOOLTIP_BG = Color.WHITE;
+	Color TOOLTIP_FG = Color.BLACK;
+	Font TOOLTIP_FONT = new Font("Arial", Font.PLAIN, 12);
+	Border TOOLTIP_BORDER = new WebBorder().arcSize(2);
 }

@@ -35,6 +35,7 @@ public class AppTest extends JFrame {
 		add(createButton("Tree test", e-> new TreeTest(this).setVisible(true)), new CC().grow());
 		add(createButton("TitledBorder test", e-> new TitledBorderTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Table test", e-> new TableTest(this).setVisible(true)), new CC().grow());
+		add(createButton("List test", e-> new JListTest(this).setVisible(true)), new CC().grow());
 		add(createButton("FileChooser test", e-> new FileChooserTest(this).setVisible(true)), new CC().grow());
 		
 		setTitle("App Test");

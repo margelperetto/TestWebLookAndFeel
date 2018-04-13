@@ -3,6 +3,7 @@ package br.com.margel.weblaf.uis;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalTextFieldUI;
@@ -39,6 +40,7 @@ public class UIWebTextField extends MetalTextFieldUI{
 		c.setFont(WebTheme.TEXT_FIELD_FONT);
 		c.setBackground(WebTheme.TEXT_FIELD_BG);
 		c.setForeground(WebTheme.TEXT_FIELD_FG);
+		UIWebFileChooser.installAncestorListener(c);
 		RepaintUtils.installListeners(c);
 	}
 	

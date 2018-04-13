@@ -41,6 +41,32 @@ public class WebBorder extends EmptyBorder{
 		g2d.dispose();
 	}
 
+	public WebBorder arcSize(int arcSize) {
+		this.arcWidth = arcSize;
+		this.arcHeight = arcSize;
+		return this;
+	}
+	
+	public WebBorder color(Color color) {
+		this.color = color;
+		return this;
+	}
+	
+	public WebBorder focusColor(Color focusColor) {
+		this.focusColor = focusColor;
+		return this;
+	}
+	
+	public WebBorder paintFocus(boolean paintFocus) {
+		this.paintFocus = paintFocus;
+		return this;
+	}
+	
+	public WebBorder insets(int top, int left, int bottom, int right) {
+		this.getBorderInsets().set(top, left, bottom, right);
+		return this;
+	}
+	
 	public int getArcWidth() {
 		return arcWidth;
 	}

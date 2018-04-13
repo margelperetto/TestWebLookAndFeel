@@ -37,6 +37,7 @@ public class LoginTest extends JDialog{
 		buttonForgotPass.setForeground(Color.BLUE);
 		buttonForgotPass.setBorderPainted(false);
 		buttonForgotPass.setBorder(new WebBorder(new Insets(2, 2, 2, 2)));
+		buttonForgotPass.setToolTipText("An email will be sent with a temporary password");
 		
 		WebBorder webBorder = new WebBorder(new Insets(50, 50, 50, 50));
 		webBorder.setArcHeight(50);

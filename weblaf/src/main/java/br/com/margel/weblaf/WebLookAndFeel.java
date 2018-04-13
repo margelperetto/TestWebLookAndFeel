@@ -2,14 +2,15 @@ package br.com.margel.weblaf;
 
 import java.awt.Insets;
 
+import javax.swing.ToolTipManager;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
-import br.com.margel.weblaf.uis.UIWebFileChooser;
 import br.com.margel.weblaf.uis.UIWebButton;
 import br.com.margel.weblaf.uis.UIWebCheckBox;
 import br.com.margel.weblaf.uis.UIWebComboBox;
+import br.com.margel.weblaf.uis.UIWebFileChooser;
 import br.com.margel.weblaf.uis.UIWebFormattedTextField;
 import br.com.margel.weblaf.uis.UIWebLabel;
 import br.com.margel.weblaf.uis.UIWebOptionPane;
@@ -130,12 +131,34 @@ public class WebLookAndFeel extends MetalLookAndFeel{
 		UIManager.put("TableHeader.background", WebTheme.TABLE_HEADER_BG);
 		UIManager.put("TableHeader.foreground", WebTheme.TABLE_HEADER_FG);
 		
+		UIManager.put("List.font", WebTheme.LIST_FONT);
+		UIManager.put("List.background", WebTheme.LIST_BG);
+		UIManager.put("List.foreground", WebTheme.LIST_FG);
+		UIManager.put("List.focusCellHighlightBorder", WebTheme.LIST_SELECTION_BG);
+		UIManager.put("List.selectionBackground", WebTheme.LIST_SELECTION_BG);
+		UIManager.put("List.selectionForeground", WebTheme.LIST_SELECTION_FG);
+		
 		UIManager.put("FileChooser.upFolderIcon", WebTheme.FILECHOOSER_UP_ICON);
 		UIManager.put("FileChooser.homeFolderIcon", WebTheme.FILECHOOSER_HOME_ICON);
 		UIManager.put("FileChooser.newFolderIcon", WebTheme.FILECHOOSER_NEWFOLDER_ICON);
 		UIManager.put("FileChooser.listViewIcon", WebTheme.FILECHOOSER_LIST_VIEW_ICON);
 		UIManager.put("FileChooser.detailsViewIcon", WebTheme.FILECHOOSER_DETAIL_VIEW_ICON);
+		UIManager.put("FileChooser.viewMenuIcon", WebTheme.FILECHOOSER_VIEW_MENU_ICON);
+		
+		UIManager.put("FileView.directoryIcon", WebTheme.FILECHOOSER_DIR_ICON);
+		UIManager.put("FileView.fileIcon", WebTheme.FILECHOOSER_FILE_ICON);
+		UIManager.put("FileView.computerIcon", WebTheme.FILECHOOSER_COMPUTER_ICON);
+		UIManager.put("FileView.hardDriveIcon", WebTheme.FILECHOOSER_HARD_DRIVE_ICON);
+		UIManager.put("FileView.floppyDriveIcon", WebTheme.FILECHOOSER_FLOPPY_ICON);
+		
+		ToolTipManager.sharedInstance().setInitialDelay(50);
+		ToolTipManager.sharedInstance().setDismissDelay(8000);
 
+		UIManager.put("ToolTip.background", WebTheme.TOOLTIP_BG);
+		UIManager.put("ToolTip.foreground", WebTheme.TOOLTIP_FG);
+		UIManager.put("ToolTip.border", WebTheme.TOOLTIP_BORDER);
+		UIManager.put("ToolTip.font", WebTheme.TOOLTIP_FONT);
+		
 		/*
 
 		List<Object> gradient = new ArrayList<Object>();
