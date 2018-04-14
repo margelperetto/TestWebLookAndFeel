@@ -1,3 +1,21 @@
 # WebLookAndFeel
 
-A Java Swing Look and Feel similar to web pages
+A Java Swing Look and Feel similar to web pages.
+
+
+## Screenshots
+
+![alt text](https://github.com/margelperetto/weblaf/blob/master/screenshots/login.JPG "ScreenShot Login")
+
+![alt text](https://github.com/margelperetto/weblaf/blob/master/screenshots/checkout.gif "ScreenShot Checkout")
+
+
+## To run a preview
+```
+$ git clone https://github.com/margelperetto/weblaf.git WebLookAndFeel
+$ cd WebLookAndFeel/weblaf
+$ mvn clean install
+$ cd ../weblaf.tests
+$ mvn package
+$ java -jar target/weblaf.tests-0.0.1-SNAPSHOT.jar
+```
