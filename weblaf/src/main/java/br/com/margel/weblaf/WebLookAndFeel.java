@@ -1,6 +1,8 @@
 package br.com.margel.weblaf;
 
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ToolTipManager;
 import javax.swing.UIDefaults;
@@ -9,6 +11,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import br.com.margel.weblaf.uis.UIWebButton;
 import br.com.margel.weblaf.uis.UIWebCheckBox;
+import br.com.margel.weblaf.uis.UIWebCheckBoxMenuItem;
 import br.com.margel.weblaf.uis.UIWebComboBox;
 import br.com.margel.weblaf.uis.UIWebFileChooser;
 import br.com.margel.weblaf.uis.UIWebFormattedTextField;
@@ -18,6 +21,7 @@ import br.com.margel.weblaf.uis.UIWebPanel;
 import br.com.margel.weblaf.uis.UIWebPasswordField;
 import br.com.margel.weblaf.uis.UIWebProgressBar;
 import br.com.margel.weblaf.uis.UIWebRadioButton;
+import br.com.margel.weblaf.uis.UIWebRadioButtonMenuItem;
 import br.com.margel.weblaf.uis.UIWebRootPane;
 import br.com.margel.weblaf.uis.UIWebScrollBar;
 import br.com.margel.weblaf.uis.UIWebScrollPane;
@@ -74,11 +78,8 @@ public class WebLookAndFeel extends MetalLookAndFeel{
 				"TableHeaderUI", UIWebTableHeader.class.getCanonicalName(),
 				"TableUI", UIWebTable.class.getCanonicalName(),
 				"FileChooserUI", UIWebFileChooser.class.getCanonicalName(),
-
-				/*
-				"CheckBoxMenuItemUI", UIMinimalistCheckBoxMenuItem.class.getCanonicalName(),
-				"RadioButtonMenuItemUI", UIMinimalistRadioButtonMenuItem.class.getCanonicalName(),
-				*/
+				"CheckBoxMenuItemUI", UIWebCheckBoxMenuItem.class.getCanonicalName(),
+				"RadioButtonMenuItemUI", UIWebRadioButtonMenuItem.class.getCanonicalName(),
 		};
 		table.putDefaults(uiDefaults);
 		
@@ -159,60 +160,58 @@ public class WebLookAndFeel extends MetalLookAndFeel{
 		UIManager.put("ToolTip.border", WebTheme.TOOLTIP_BORDER);
 		UIManager.put("ToolTip.font", WebTheme.TOOLTIP_FONT);
 		
-		/*
-
+		
 		List<Object> gradient = new ArrayList<Object>();
 		gradient.add(new Float(0.3f));
 		gradient.add(new Float(0f));
-		gradient.add(MinimalistTheme.MENUBAR_GRADIENTE);
-		gradient.add(MinimalistTheme.MENUBAR_GRADIENTE);
-		gradient.add(MinimalistTheme.MENUBAR_GRADIENTE);
+		gradient.add(WebTheme.MENUBAR_GRADIENTE);
+		gradient.add(WebTheme.MENUBAR_GRADIENTE);
+		gradient.add(WebTheme.MENUBAR_GRADIENTE);
 
 		UIManager.put("MenuBar.gradient", gradient);
-		UIManager.put("MenuBar.borderColor", MinimalistTheme.MENUBAR_BORDER_COLOR);
-		UIManager.put("MenuBar.border", MinimalistTheme.MENUBAR_BORDER);
+		UIManager.put("MenuBar.borderColor", WebTheme.MENUBAR_BORDER_COLOR);
+		UIManager.put("MenuBar.border", WebTheme.MENUBAR_BORDER);
 
-		UIManager.put("Menu.foreground", MinimalistTheme.MENU_FG);
-		UIManager.put("Menu.background", MinimalistTheme.MENU_BG);
-		UIManager.put("Menu.selectionBackground", MinimalistTheme.MENU_SELECTION_BG);
-		UIManager.put("Menu.selectionForeground", MinimalistTheme.MENU_SELECTION_FG);
-		UIManager.put("Menu.borderPainted", MinimalistTheme.MENU_BORDER_PAINTED);
-		UIManager.put("Menu.acceleratorForeground", MinimalistTheme.MENU_ACCELERATOR_FG);
-		UIManager.put("Menu.acceleratorSelectionForeground", MinimalistTheme.MENU_SELECTION_FG);
-		UIManager.put("Menu.font", MinimalistTheme.MENU_FONT);
-		UIManager.put("Menu.border", MinimalistTheme.MENU_BORDER);
+		UIManager.put("Menu.foreground", WebTheme.MENU_FG);
+		UIManager.put("Menu.background", WebTheme.MENU_BG);
+		UIManager.put("Menu.selectionBackground", WebTheme.MENU_SELECTION_BG);
+		UIManager.put("Menu.selectionForeground", WebTheme.MENU_SELECTION_FG);
+		UIManager.put("Menu.borderPainted", WebTheme.MENU_BORDER_PAINTED);
+		UIManager.put("Menu.acceleratorForeground", WebTheme.MENU_ACCELERATOR_FG);
+		UIManager.put("Menu.acceleratorSelectionForeground", WebTheme.MENU_SELECTION_FG);
+		UIManager.put("Menu.font", WebTheme.MENU_FONT);
+		UIManager.put("Menu.border", WebTheme.MENU_BORDER);
 
-		UIManager.put("MenuItem.background", MinimalistTheme.MENUITEM_BG);
-		UIManager.put("MenuItem.foreground", MinimalistTheme.MENUITEM_FG);
-		UIManager.put("MenuItem.font", MinimalistTheme.MENUITEM_FONT);
-		UIManager.put("MenuItem.selectionBackground", MinimalistTheme.MENUITEM_SELECTION_BG);
-		UIManager.put("MenuItem.selectionForeground", MinimalistTheme.MENUITEM_FG);
-		UIManager.put("MenuItem.acceleratorForeground", MinimalistTheme.MENUITEM_ACCELERATOR_FG);
-		UIManager.put("MenuItem.acceleratorSelectionForeground", MinimalistTheme.MENUITEM_ACCELERATOR_SELECTION_FG);
-		UIManager.put("MenuItem.borderPainted", MinimalistTheme.MENUITEM_BORDER_PAINTED);
-		UIManager.put("MenuItem.border", MinimalistTheme.MENUITEM_BORDER);
+		UIManager.put("MenuItem.background", WebTheme.MENUITEM_BG);
+		UIManager.put("MenuItem.foreground", WebTheme.MENUITEM_FG);
+		UIManager.put("MenuItem.font", WebTheme.MENUITEM_FONT);
+		UIManager.put("MenuItem.selectionBackground", WebTheme.MENUITEM_SELECTION_BG);
+		UIManager.put("MenuItem.selectionForeground", WebTheme.MENUITEM_FG);
+		UIManager.put("MenuItem.acceleratorForeground", WebTheme.MENUITEM_ACCELERATOR_FG);
+		UIManager.put("MenuItem.acceleratorSelectionForeground", WebTheme.MENUITEM_ACCELERATOR_SELECTION_FG);
+		UIManager.put("MenuItem.borderPainted", WebTheme.MENUITEM_BORDER_PAINTED);
+		UIManager.put("MenuItem.border", WebTheme.MENUITEM_BORDER);
 
-		UIManager.put("CheckBoxMenuItem.background", MinimalistTheme.CHECKBOX_MENUITEM_BG);
-		UIManager.put("CheckBoxMenuItem.foreground", MinimalistTheme.CHECKBOX_MENUITEM_FG);
-		UIManager.put("CheckBoxMenuItem.font", MinimalistTheme.CHECKBOX_MENUITEM_FONT);
-		UIManager.put("CheckBoxMenuItem.selectionBackground", MinimalistTheme.CHECKBOX_MENUITEM_SELECTION_BG);
-		UIManager.put("CheckBoxMenuItem.selectionForeground", MinimalistTheme.CHECKBOX_MENUITEM_SELECTION_FG);
-		UIManager.put("CheckBoxMenuItem.borderPainted", MinimalistTheme.CHECKBOX_MENUITEM_BORDER_PAINTED);
-		UIManager.put("CheckBoxMenuItem.acceleratorForeground", MinimalistTheme.CHECKBOX_MENUITEM_ACCELERATOR_FG);
-		UIManager.put("CheckBoxMenuItem.acceleratorSelectionForeground", MinimalistTheme.CHECKBOX_MENUITEM_ACCELERATOR_SELECTION_FG);
-		UIManager.put("CheckBoxMenuItem.border", MinimalistTheme.CHECKBOX_MENUITEM_BORDER);
+		UIManager.put("CheckBoxMenuItem.background", WebTheme.CHECKBOX_MENUITEM_BG);
+		UIManager.put("CheckBoxMenuItem.foreground", WebTheme.CHECKBOX_MENUITEM_FG);
+		UIManager.put("CheckBoxMenuItem.font", WebTheme.CHECKBOX_MENUITEM_FONT);
+		UIManager.put("CheckBoxMenuItem.selectionBackground", WebTheme.CHECKBOX_MENUITEM_SELECTION_BG);
+		UIManager.put("CheckBoxMenuItem.selectionForeground", WebTheme.CHECKBOX_MENUITEM_SELECTION_FG);
+		UIManager.put("CheckBoxMenuItem.borderPainted", WebTheme.CHECKBOX_MENUITEM_BORDER_PAINTED);
+		UIManager.put("CheckBoxMenuItem.acceleratorForeground", WebTheme.CHECKBOX_MENUITEM_ACCELERATOR_FG);
+		UIManager.put("CheckBoxMenuItem.acceleratorSelectionForeground", WebTheme.CHECKBOX_MENUITEM_ACCELERATOR_SELECTION_FG);
+		UIManager.put("CheckBoxMenuItem.border", WebTheme.CHECKBOX_MENUITEM_BORDER);
 
-		UIManager.put("RadioButtonMenuItem.background", MinimalistTheme.RADIOBUTTON_MENUITEM_BG);
-		UIManager.put("RadioButtonMenuItem.foreground", MinimalistTheme.RADIOBUTTON_MENUITEM_FG);
-		UIManager.put("RadioButtonMenuItem.font", MinimalistTheme.RADIOBUTTON_MENUITEM_FONT);
-		UIManager.put("RadioButtonMenuItem.selectionBackground", MinimalistTheme.RADIOBUTTON_MENUITEM_SELECTION_BG);
-		UIManager.put("RadioButtonMenuItem.selectionForeground", MinimalistTheme.RADIOBUTTON_MENUITEM_SELECTION_FG);
-		UIManager.put("RadioButtonMenuItem.borderPainted", MinimalistTheme.RADIOBUTTON_MENUITEM_BORDER_PAINTED);
-		UIManager.put("RadioButtonMenuItem.acceleratorForeground", MinimalistTheme.RADIOBUTTON_MENUITEM_ACCELERATOR_FG);
-		UIManager.put("RadioButtonMenuItem.acceleratorSelectionForeground", MinimalistTheme.RADIOBUTTON_MENUITEM_ACCELERATOR_SELECTION_FG);
-		UIManager.put("RadioButtonMenuItem.border", MinimalistTheme.RADIOBUTTON_MENUITEM_BORDER);
+		UIManager.put("RadioButtonMenuItem.background", WebTheme.RADIOBUTTON_MENUITEM_BG);
+		UIManager.put("RadioButtonMenuItem.foreground", WebTheme.RADIOBUTTON_MENUITEM_FG);
+		UIManager.put("RadioButtonMenuItem.font", WebTheme.RADIOBUTTON_MENUITEM_FONT);
+		UIManager.put("RadioButtonMenuItem.selectionBackground", WebTheme.RADIOBUTTON_MENUITEM_SELECTION_BG);
+		UIManager.put("RadioButtonMenuItem.selectionForeground", WebTheme.RADIOBUTTON_MENUITEM_SELECTION_FG);
+		UIManager.put("RadioButtonMenuItem.borderPainted", WebTheme.RADIOBUTTON_MENUITEM_BORDER_PAINTED);
+		UIManager.put("RadioButtonMenuItem.acceleratorForeground", WebTheme.RADIOBUTTON_MENUITEM_ACCELERATOR_FG);
+		UIManager.put("RadioButtonMenuItem.acceleratorSelectionForeground", WebTheme.RADIOBUTTON_MENUITEM_ACCELERATOR_SELECTION_FG);
+		UIManager.put("RadioButtonMenuItem.border", WebTheme.RADIOBUTTON_MENUITEM_BORDER);
 
-		*/
 	}
 	
 }

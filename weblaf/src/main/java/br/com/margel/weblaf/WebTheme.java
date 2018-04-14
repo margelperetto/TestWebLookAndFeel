@@ -6,6 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import br.com.margel.weblaf.borders.WebBorder;
 import br.com.margel.weblaf.utils.IconUtils;
@@ -135,12 +136,81 @@ public interface WebTheme {
 	ImageIcon FILECHOOSER_UP_ICON = IconUtils.getImageIcon("folder_up25x25.png");
 	ImageIcon FILECHOOSER_NEWFOLDER_ICON = IconUtils.getImageIcon("new_folder25x25.png");
 	ImageIcon FILECHOOSER_HOME_ICON = IconUtils.getImageIcon("desktop25x25.png");
-	ImageIcon FILECHOOSER_LIST_VIEW_ICON = IconUtils.getImageIcon("list25x25.png");
-	ImageIcon FILECHOOSER_DETAIL_VIEW_ICON = IconUtils.getImageIcon("detail25x25.png");
-	ImageIcon FILECHOOSER_VIEW_MENU_ICON = IconUtils.getImageIcon("detail25x25.png");
+	ImageIcon FILECHOOSER_LIST_VIEW_ICON = IconUtils.getImageIcon("list_view25x25.png");
+	ImageIcon FILECHOOSER_DETAIL_VIEW_ICON = IconUtils.getImageIcon("detail_view25x25.png");
+	ImageIcon FILECHOOSER_VIEW_MENU_ICON = IconUtils.getImageIcon("detail_view25x25.png");
 	
 	Color TOOLTIP_BG = Color.WHITE;
 	Color TOOLTIP_FG = Color.BLACK;
 	Font TOOLTIP_FONT = new Font("Arial", Font.PLAIN, 12);
 	Border TOOLTIP_BORDER = new WebBorder().arcSize(2);
+	
+// REFACTOR
+//------------------------------------------------------------------------------------------------	
+	
+	/*PADRÕES GLOBAIS - APENAS AJUDAM A PADRONIZAR, MAS NÃO SÃO USADOS NOS COMPONENTES*/
+	//--------------------------------------------------------------------------------------------
+	public static Color BG = Color.WHITE;
+	public static Color FG = Color.BLACK;
+	public static Color FG2 = Color.DARK_GRAY;
+	public static Color SHADOW = Color.GRAY;
+	public static Color LINES = Color.LIGHT_GRAY;
+	public static Color FOCUS = Color.CYAN.darker();
+	public static Color SELECTED = Color.GREEN.darker();
+	public static Font FONT_GLOBAL = new Font("Arial", Font.PLAIN, 12);
+    //----------------------------------------------------------------------------------------------
+	
+	
+	public static Border MENUS_BORDER = new EmptyBorder(6, 5, 5, 5);
+	public static Color MENUITENS_BG = FG2;
+	public static Color MENUITENS_FG = BG;
+	public static Color MENUITENS_SELECT_BG = SELECTED.darker();
+	public static Color MENUITENS_SELECT_FG = BG;
+	
+	public static Color MENUBAR_GRADIENTE =  FOCUS.darker();
+	public static Color MENUBAR_BORDER_COLOR = FOCUS.darker();
+	public static Border MENUBAR_BORDER = new EmptyBorder(0, 0, 0, 0);
+	
+	public static Color MENU_FG = BG;
+	public static Color MENU_BG = FOCUS.darker();
+	public static Color MENU_SELECTION_BG = FOCUS;
+	public static Color MENU_SELECTION_FG = BG;
+	public static Color MENU_ACCELERATOR_FG = BG;
+	public static Color MENU_ACCELERATOR_SELECTION_FG = SELECTED;
+	public static Boolean MENU_BORDER_PAINTED = Boolean.FALSE;
+	public static Font MENU_FONT = FONT_GLOBAL;
+	public static Border MENU_BORDER = MENUS_BORDER;
+	
+	public static Color MENUITEM_BG = MENUITENS_BG;
+	public static Color MENUITEM_FG = MENUITENS_FG;
+	public static Color MENUITEM_SELECTION_BG = MENUITENS_SELECT_BG;
+	public static Color MENUITEM_SELECTION_FG = MENUITENS_FG;
+	public static Color MENUITEM_ACCELERATOR_FG = BG;
+	public static Color MENUITEM_ACCELERATOR_SELECTION_FG = BG;
+	public static Boolean MENUITEM_BORDER_PAINTED = Boolean.FALSE;
+	public static Border MENUITEM_BORDER = MENUS_BORDER;
+	public static Font MENUITEM_FONT = FONT_GLOBAL;
+
+	public static Color CHECKBOX_MENUITEM_BG = MENUITENS_BG;
+	public static Color CHECKBOX_MENUITEM_FG = MENUITENS_FG;
+	public static Color CHECKBOX_MENUITEM_SELECT = BG;
+	public static Color CHECKBOX_MENUITEM_SELECTION_BG = MENUITENS_SELECT_BG;
+	public static Color CHECKBOX_MENUITEM_SELECTION_FG = MENUITENS_FG;
+	public static Color CHECKBOX_MENUITEM_ACCELERATOR_FG = FOCUS;
+	public static Color CHECKBOX_MENUITEM_ACCELERATOR_SELECTION_FG = BG;
+	public static Boolean CHECKBOX_MENUITEM_BORDER_PAINTED = Boolean.FALSE;
+	public static Font CHECKBOX_MENUITEM_FONT = FONT_GLOBAL;
+	public static Border CHECKBOX_MENUITEM_BORDER = MENUS_BORDER;
+	
+	public static Color RADIOBUTTON_MENUITEM_BG = MENUITENS_BG;
+	public static Color RADIOBUTTON_MENUITEM_FG = MENUITENS_FG;
+	public static Color RADIOBUTTON_MENUITEM_SELECT = BG;
+	public static Color RADIOBUTTON_MENUITEM_SELECTION_BG = MENUITENS_BG;
+	public static Color RADIOBUTTON_MENUITEM_SELECTION_FG = MENUITENS_FG;
+	public static Color RADIOBUTTON_MENUITEM_ACCELERATOR_FG = FOCUS;
+	public static Color RADIOBUTTON_MENUITEM_ACCELERATOR_SELECTION_FG = BG;
+	public static Boolean RADIOBUTTON_MENUITEM_BORDER_PAINTED = Boolean.FALSE;
+	public static Font RADIOBUTTON_MENUITEM_FONT = FONT_GLOBAL;
+	public static Border RADIOBUTTON_MENUITEM_BORDER = MENUS_BORDER;
+	
 }

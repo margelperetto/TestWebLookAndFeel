@@ -32,6 +32,9 @@ public class UIWebTable extends BasicTableUI{
 		rendererPane = new CellRendererPaneDark();
 		table.add(rendererPane);
 		focusColor = WebTheme.TABLE_CEL_FOCUS;
+		table.addPropertyChangeListener("Table.focusCellColor", (evt)->{
+			focusColor = (Color) evt.getNewValue();
+		}); 
 	}
 
 	@SuppressWarnings("serial")

@@ -45,11 +45,15 @@ public class UIWebButton extends MetalButtonUI{
 		} else {
 			WebBorder b = (WebBorder)c.getBorder();
 			b.setColor(c.getBackground());
-			if(c.isOpaque()){
+			if(paintBackgroundAllowed(c)){
 				paintCustomBackgroud(g, c, b, 1f);
 			} 
 			super.paint(g, c);
 		}
+	}
+
+	protected boolean paintBackgroundAllowed(JComponent c) {
+		return c.isOpaque();
 	}
 
 	@Override

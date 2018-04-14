@@ -7,13 +7,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.util.Locale;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -33,6 +31,7 @@ import javax.swing.text.MaskFormatter;
 import br.com.margel.weblaf.WebTheme;
 import br.com.margel.weblaf.borders.ParcialBorder;
 import br.com.margel.weblaf.borders.WebBorder;
+import br.com.margel.weblaf.utils.IconUtils;
 import net.miginfocom.layout.CC;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
@@ -168,7 +167,7 @@ public class CheckoutPageTest extends JFrame {
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
 		
 		panelUserInfos.add(new JLabel("Email"), new CC().gapTop("20").spanX().split());
-		panelUserInfos.add(createLabel(" (Optional)", Color.LIGHT_GRAY), new CC().gapTop("20").gapLeft("0").wrap());
+		panelUserInfos.add(createLabel(" (Optional)", new Color(100, 150, 200)), new CC().gapTop("20").gapLeft("0").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
 		
 		panelUserInfos.add(new JLabel("Address"), new CC().gapTop("20").wrap());
@@ -288,14 +287,14 @@ public class CheckoutPageTest extends JFrame {
 	}
 
 	private Component createSubTitleLabel() {
-		JLabel label = new JLabel("<html><p style=\"text-align: center;\">Below is an example form built entirely with Web Look And Feel form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p></html>");
+		JLabel label = new JLabel("<html><p style=\"text-align: center;\">Below is an example form using the WebLookAndFeel styles. The form was copied from an example of Bootstrap page, and was basically built with MigLayout. Note: It's just a demonstration, the buttons will not do anything.</p></html>");
 		label.setFont(label.getFont().deriveFont(16f));
 		return label;
 	}
 
 	private Component createTitleLabel() {
 		JLabel label = new JLabel("Checkout form");
-		setTitleIcon(label);
+		label.setIcon(IconUtils.getImageIcon("checkout.png"));
 		label.setFont(label.getFont().deriveFont(Font.BOLD, 32f));
 		label.setHorizontalTextPosition(JLabel.CENTER);
 		label.setVerticalTextPosition(JLabel.BOTTOM);
@@ -307,12 +306,6 @@ public class CheckoutPageTest extends JFrame {
 		label.setForeground(Color.GRAY);
 		label.setFont(label.getFont().deriveFont(16f));
 		return label;
-	}
-
-	private void setTitleIcon(JLabel label) {
-		try {
-			label.setIcon(new ImageIcon(new URL("http://dryicons.com/uploads/icon/preview/5546/icon_grid_1x_57b23bc4-4985-4bde-9434-e46fc2a362cd.png")));
-		} catch (Exception e) {}
 	}
 
 }

@@ -59,6 +59,7 @@ public class UIWebTextField extends MetalTextFieldUI{
 	
 	private void paintCustomBackgroud(Graphics g, int w, int h, int aw, int ah) {
 		Graphics2D g2d = (Graphics2D) g.create();
+		g2d.clearRect(0, 0, w, h);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setColor(c.getBackground());
 		g2d.fillRoundRect(0, 0, w-1, h-1, aw, ah);

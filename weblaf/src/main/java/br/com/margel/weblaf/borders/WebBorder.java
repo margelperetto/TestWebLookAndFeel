@@ -18,6 +18,7 @@ public class WebBorder extends EmptyBorder{
 	private int arcWidth = 10;
 	private int arcHeight = 10;
 	private boolean paintFocus;
+	private Color fixedColor;
 
 	public WebBorder() {
 		super(new Insets(10, 12, 10, 12));
@@ -88,7 +89,7 @@ public class WebBorder extends EmptyBorder{
 	}
 
 	public void setColor(Color color) {
-		this.color = color;
+		this.color = fixedColor!=null?fixedColor:color;
 	}
 
 	public Color getFocusColor() {
@@ -105,6 +106,15 @@ public class WebBorder extends EmptyBorder{
 
 	public void setPaintFocus(boolean paintFocus) {
 		this.paintFocus = paintFocus;
+	}
+
+	public Color getFixedColor() {
+		return fixedColor;
+	}
+
+	public void setFixedColor(Color fixedColor) {
+		this.fixedColor = fixedColor;
+		this.color = fixedColor;
 	}
 	
 }

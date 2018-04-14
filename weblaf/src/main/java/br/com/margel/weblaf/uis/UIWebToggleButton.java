@@ -20,6 +20,11 @@ public class UIWebToggleButton extends UIWebButton{
 	}
 	
 	@Override
+	protected boolean paintBackgroundAllowed(JComponent c) {
+		return c.isOpaque() || ((JToggleButton)c).isSelected();
+	}
+	
+	@Override
 	protected void paintCustomBackgroud(Graphics g, JComponent c, WebBorder b, float alpha) {
 		boolean sel = ((JToggleButton)c).isSelected();
 		if(sel){

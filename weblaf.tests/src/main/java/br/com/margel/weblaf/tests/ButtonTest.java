@@ -26,6 +26,7 @@ public class ButtonTest extends JDialog{
 	
 	private JButton btn = new JButton("Custom Button");
 	private JButton btnBorderCustom = new JButton("Custom Border");
+	private JButton btnOpaque = new JButton("Opaque False");
 	private JCheckBox ckbEnabled;
 	private JCheckBox ckbContentAreaFilled;
 	private JCheckBox ckbOpaque;
@@ -49,6 +50,10 @@ public class ButtonTest extends JDialog{
 		
 		btnBorderCustom.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
+		btnOpaque.setOpaque(false);
+		btnOpaque.setBackground(Color.decode("#dc3545"));
+		btnOpaque.setForeground(Color.decode("#dc3545"));
+		
 		setLayout(new MigLayout(new LC().noGrid()));
 		add(ckbEnabled, new CC());
 		add(ckbOpaque, new CC());
@@ -58,8 +63,9 @@ public class ButtonTest extends JDialog{
 		add(ckbFocusable, new CC().wrap());
 		add(colorSelectBg, new CC().wrap());
 		add(colorSelectFg, new CC().wrap());
-		add(btn, new CC().gapTop("50"));
+		add(btn, new CC().gapTop("50").wrap());
 		add(new JButton("Default Buttom"), new CC().gapTop("50"));
+		add(btnOpaque, new CC().gapTop("50"));
 		add(new JButton("Icon 15x15", IconUtils.arrowIcon(new Dimension(15, 15), SwingConstants.NORTH, 2, Color.WHITE)), new CC().gapTop("50"));
 		add(new JButton("Icon Buttom", IconUtils.getImageIcon("home25x25.png")), new CC().gapTop("50"));
 		add(btnBorderCustom, new CC().gapTop("50"));
