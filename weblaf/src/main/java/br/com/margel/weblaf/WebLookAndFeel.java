@@ -91,6 +91,18 @@ public class WebLookAndFeel extends MetalLookAndFeel{
 		UIManager.put("TextField.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);
 		UIManager.put("TextField.selectionForeground", WebTheme.TEXT_FIELD_SELECTION_FG);
 		
+		UIManager.put("FormattedTextField.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);
+		UIManager.put("FormattedTextField.selectionForeground", WebTheme.TEXT_FIELD_SELECTION_FG);
+		
+		UIManager.put("PasswordField.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);
+		UIManager.put("PasswordField.selectionForeground", WebTheme.TEXT_FIELD_SELECTION_FG);
+		
+		UIManager.put("TextArea.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);
+		UIManager.put("TextArea.selectionForeground", WebTheme.TEXT_FIELD_SELECTION_FG);
+		
+		UIManager.put("TextPane.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);
+		UIManager.put("TextPane.selectionForeground", WebTheme.TEXT_FIELD_SELECTION_FG);
+		
 		UIManager.put("TextPane.font", WebTheme.TEXTPANE_FONT);
 		UIManager.put("EditorPane.font", WebTheme.EDITORPANE_FONT);
 		

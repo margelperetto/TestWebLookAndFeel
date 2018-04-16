@@ -19,12 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileView;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
@@ -54,12 +53,16 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 		configButtons();
 		configLabel();
 		configCombo();
+		configTextField();
 	}
 
 	private void configButtons() {
 		for (AbstractButton btn : ComponentUtils.searchAssignableFrom(AbstractButton.class, chooser, true)) {
 			btn.setOpaque(false);
 			btn.setForeground(Color.DARK_GRAY);
+			if(btn.getIcon()!=null){
+				btn.setBorder(new WebBorder(new Insets(4, 4, 4, 4)).arcSize(5));
+			}
 			if (btn.getBorder() instanceof WebBorder) {
 				((WebBorder) btn.getBorder()).setFixedColor(WebTheme.TEXT_FIELD_BORDER_COLOR);
 			}
@@ -68,10 +71,15 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 			}
 		}
 	}
+	private void configTextField() {
+		for (JTextField tf : ComponentUtils.searchAssignableFrom(JTextField.class, chooser, true)) {
+			tf.setBorder(new WebBorder(new Insets(6, 4, 6, 4)).arcSize(5));
+		}
+	}
 
 	private void configLabel() {
 		for (JLabel label : ComponentUtils.searchAssignableFrom(JLabel.class, chooser, true)) {
-			label.setFont(label.getFont().deriveFont(Font.BOLD));
+			label.setFont(label.getFont().deriveFont(Font.PLAIN, 11f));
 		}
 	}
 
@@ -83,7 +91,7 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 			combo.setFocusable(false);
 		}
 	}
-
+	
 	@Override
 	protected JPanel createDetailsView(JFileChooser fc) {
 		JPanel panel = super.createDetailsView(fc);
@@ -93,10 +101,20 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 			table.putClientProperty("Table.focusCellColor", table.getSelectionBackground());
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			updateTableColsSize(table);
-			table.getModel().addTableModelListener(new TableModelListener() {
-				@Override
-				public void tableChanged(TableModelEvent e) {
-					updateTableColsSize(table);
+			table.getModel().addTableModelListener(e->updateTableColsSize(table));
+		}
+		return panel;
+	}
+	
+	@Override
+	protected JPanel createList(JFileChooser fc) {
+		JPanel panel = super.createList(fc);
+		for (JList<?> list : ComponentUtils.searchAssignableFrom(JList.class, panel, true)) {
+			list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+			list.setFixedCellWidth(250);
+			list.addPropertyChangeListener(evt -> {
+				if(evt.getPropertyName().equals("layoutOrientation") && !evt.getNewValue().equals(JList.HORIZONTAL_WRAP)){
+					list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 				}
 			});
 		}
@@ -111,8 +129,7 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 			table.getColumnModel().getColumn(2).setMaxWidth(150);
 			table.getColumnModel().getColumn(3).setMinWidth(150);
 			table.getColumnModel().getColumn(3).setMaxWidth(150);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {/*nothing to do here*/}
 	}
 
 	@Override

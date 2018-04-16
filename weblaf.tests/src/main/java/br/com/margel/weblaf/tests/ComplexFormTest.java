@@ -42,7 +42,8 @@ public class ComplexFormTest extends JFrame{
 		
 		setTitle("ComplexForm Test");
 		pack();
-		setSize(new Dimension(getWidth()+20, Toolkit.getDefaultToolkit().getScreenSize().height-80));
+		int sh = Toolkit.getDefaultToolkit().getScreenSize().height-80;
+		setSize(new Dimension(getWidth()+20, Math.min(getHeight(), sh)));
 		setMinimumSize(new Dimension(getWidth(), 600));
 		setLocationRelativeTo(null);
 	}
@@ -70,17 +71,17 @@ public class ComplexFormTest extends JFrame{
 	}
 	
 	private JPanel createPanelMenus() {
-		JPanel pMenu = new JPanel(new MigLayout(new LC().wrapAfter(1).insets("12.5", "0", "0", "0").gridGapY("0")));
+		JPanel pMenu = new JPanel(new MigLayout(new LC().wrapAfter(1).insets("12.5", "0", "0", "0").gridGapY("0").fillX()));
 		pMenu.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).right());
 		
-		pMenu.add(createPanelItemMenu("dashboard25x25.PNG", "Dashboard", "#5b7583", false));
-		pMenu.add(createPanelItemMenu("analytics25x25.PNG", "Analytics", "#5b7583", false));
-		pMenu.add(createPanelItemMenu("business25x25.PNG", "Business", "#5b7583", false));
-		pMenu.add(createPanelItemMenu("company25x25.PNG", "My Company", "#04b7a8", true));
-		pMenu.add(createPanelItemMenu("admin25x25.PNG", "Admin", "#5b7583", false));
+		pMenu.add(createPanelItemMenu("dashboard25x25.PNG", "Dashboard", "#5b7583", false), new CC().growX());
+		pMenu.add(createPanelItemMenu("analytics25x25.PNG", "Analytics", "#5b7583", false), new CC().growX());
+		pMenu.add(createPanelItemMenu("business25x25.PNG", "Business", "#5b7583", false), new CC().growX());
+		pMenu.add(createPanelItemMenu("company25x25.PNG", "My Company", "#04b7a8", true), new CC().growX());
+		pMenu.add(createPanelItemMenu("admin25x25.PNG", "Admin", "#5b7583", false), new CC().growX());
 
 		pMenu.add(new JLabel(""), new CC().height("100%"));
-		pMenu.add(createPanelCredits());
+		pMenu.add(createPanelCredits(), new CC().growX());
 		
 		return pMenu;
 	}
@@ -89,6 +90,7 @@ public class ComplexFormTest extends JFrame{
 		JPanel pCredits = createPanelItemMenu("help25x25.PNG", "Help / Credits", "#5b7583", false);
 		pCredits.setToolTipText("<html>This layout was inspired by an example presented in <br>"
 				+ "<b style=\"color=#b8e8e4\">https://www.yummygum.com</b>.</html>");
+		pCredits.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).top());
 		return pCredits;
 	}
 

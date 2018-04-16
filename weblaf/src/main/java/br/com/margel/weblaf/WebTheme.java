@@ -18,8 +18,8 @@ public interface WebTheme {
 	Color TEXT_FIELD_FG = Color.DARK_GRAY;
 	Color TEXT_FIELD_FOCUS_COLOR = Color.decode("#80bdff");
 	Color TEXT_FIELD_BORDER_COLOR = Color.decode("#ced4da");
-	Color TEXT_FIELD_SELECTION_BG = Color.DARK_GRAY;
-	Color TEXT_FIELD_SELECTION_FG = Color.WHITE;
+	Color TEXT_FIELD_SELECTION_BG = Color.decode("#ced4da");
+	Color TEXT_FIELD_SELECTION_FG = Color.BLACK;
 	int TEXT_FIELD_BORDER_ROUND = 5;
 	Insets TEXT_FIELD_BORDER_INSETS = new Insets(10, 12, 10, 12);
 	
