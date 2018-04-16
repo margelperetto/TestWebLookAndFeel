@@ -8,7 +8,6 @@ import java.awt.Window;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import net.miginfocom.layout.CC;
@@ -21,14 +20,11 @@ public class TabbedTest extends JDialog {
 	public TabbedTest(Window owner) {
 		super(owner);
 		
-		setLayout(new MigLayout(new LC()));
-		add(createTab(JTabbedPane.TOP, 0), new CC());
-		add(createTab(JTabbedPane.LEFT, 1), new CC().wrap());
-		add(createTab(JTabbedPane.RIGHT, 2), new CC().alignY("top"));
-		add(createTab(JTabbedPane.BOTTOM, 3), new CC());
-		
-		((JPanel)getContentPane()).setOpaque(true);
-		((JPanel)getContentPane()).setBackground(Color.DARK_GRAY);
+		setLayout(new MigLayout(new LC().insetsAll("0").gridGap("0", "0").fill().wrapAfter(2)));
+		add(createTab(JTabbedPane.TOP, 0), new CC().grow());
+		add(createTab(JTabbedPane.RIGHT, 1), new CC().alignY("bottom").grow());
+		add(createTab(JTabbedPane.LEFT, 2), new CC().alignY("top").grow());
+		add(createTab(JTabbedPane.BOTTOM, 3), new CC().grow());
 		
 		setTitle("Tab Test");
 		pack();
@@ -43,7 +39,7 @@ public class TabbedTest extends JDialog {
 		tab.addTab("Tab 3", createContent(new Color(200, 200, 240), "Tab 3"));
 		tab.addTab("Tab 4", createContent(new Color(240, 200, 200), "Tab 4"));
 		tab.setSelectedIndex(selectedIndex);
-		tab.setPreferredSize(new Dimension(300, 200));
+		tab.setPreferredSize(new Dimension(400, 300));
 		return tab;
 	}
 

@@ -71,7 +71,7 @@ public class UIWebFileChooser extends MetalFileChooserUI {
 
 	private void configLabel() {
 		for (JLabel label : ComponentUtils.searchAssignableFrom(JLabel.class, chooser, true)) {
-			label.setFont(label.getFont().deriveFont(16f));
+			label.setFont(label.getFont().deriveFont(Font.BOLD));
 		}
 	}
 

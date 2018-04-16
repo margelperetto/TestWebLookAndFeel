@@ -84,7 +84,8 @@ public class WebLookAndFeel extends MetalLookAndFeel{
 		table.putDefaults(uiDefaults);
 		
 		UIManager.put("TabbedPane.tabInsets",new Insets(5, 8, 3, 8));
-		UIManager.put("TabbedPane.tabAreaInsets",new Insets(3, 5, 0, 5));
+		UIManager.put("TabbedPane.tabAreaInsets", new Insets(0, 0, 0, 0));
+		UIManager.put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
 		UIManager.put("TabbedPane.font", WebTheme.TABBED_FONT);
 		
 		UIManager.put("TextField.selectionBackground", WebTheme.TEXT_FIELD_SELECTION_BG);

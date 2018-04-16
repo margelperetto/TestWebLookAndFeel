@@ -7,6 +7,7 @@ import java.awt.font.FontRenderContext;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.SpinnerListModel;
@@ -29,7 +30,8 @@ public class UIWebSpinner extends BasicSpinnerUI {
 	public void installUI(JComponent c) {
 		super.installUI(c);
 		spinner.setOpaque(false);
-		spinner.setBorder(new EmptyBorder(1, 2, 1, 2));
+		spinner.setBorder(new EmptyBorder(0, 0, 0, 0));
+		spinner.getEditor().setBorder(new EmptyBorder(0, 0, 0, 0));
 		updatePrefferedSize();
 	}
 
@@ -37,7 +39,8 @@ public class UIWebSpinner extends BasicSpinnerUI {
 		try {
 			Font f = spinner.getEditor().getFont();
 			FontRenderContext frc = new FontRenderContext(f.getTransform(),true,true);
-			AbstractFormatter formatter = ((DefaultEditor)spinner.getEditor()).getTextField().getFormatter();
+			JFormattedTextField tf = ((DefaultEditor)spinner.getEditor()).getTextField();
+			AbstractFormatter formatter = tf.getFormatter();
 			int margin = 35;
 			if(spinner.getModel() instanceof SpinnerNumberModel){
 				SpinnerNumberModel model = (SpinnerNumberModel)spinner.getModel();
@@ -49,7 +52,7 @@ public class UIWebSpinner extends BasicSpinnerUI {
 				}
 				String str = formatter.valueToString(obj);
 				int w = (int)f.getStringBounds(str, frc).getWidth()+margin;
-				spinner.setPreferredSize(new Dimension(w, spinner.getPreferredSize().height));
+				spinner.setPreferredSize(new Dimension(w, tf.getPreferredSize().height-1));
 			}else if(spinner.getModel() instanceof SpinnerListModel){
 				int maxw = (int)f.getStringBounds(formatter.valueToString(spinner.getValue()), frc).getWidth();
 				SpinnerListModel slm = (SpinnerListModel)spinner.getModel();
@@ -59,7 +62,7 @@ public class UIWebSpinner extends BasicSpinnerUI {
 						maxw = w;
 					}
 				}
-				spinner.setPreferredSize(new Dimension(maxw+(margin*2), spinner.getPreferredSize().height));
+				spinner.setPreferredSize(new Dimension(maxw+(margin*2), tf.getPreferredSize().height-1));
 			}
 			spinner.revalidate();
 		} catch (Exception e) {
@@ -89,7 +92,7 @@ public class UIWebSpinner extends BasicSpinnerUI {
 		b.setFocusable(false);
 		b.setBorderPainted(false);
 		b.setContentAreaFilled(false);
-		b.setIcon(IconUtils.arrowIcon(new Dimension(15, 15), orientation,2, WebTheme.SPINNER_ARROW));
+		b.setIcon(IconUtils.arrowIcon(new Dimension(15, 14), orientation, 2, WebTheme.SPINNER_ARROW));
 		return b;
 	}
 

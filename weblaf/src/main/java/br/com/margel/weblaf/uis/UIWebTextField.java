@@ -2,9 +2,11 @@ package br.com.margel.weblaf.uis;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 
 import javax.swing.JComponent;
+import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalTextFieldUI;
 import javax.swing.text.JTextComponent;
@@ -32,11 +34,8 @@ public class UIWebTextField extends MetalTextFieldUI{
 				}
 			});
 		}
-		WebBorder webBorder = new WebBorder();
-		webBorder.setPaintFocus(true);
-		webBorder.setFocusColor(WebTheme.TEXT_FIELD_FOCUS_COLOR);
-		webBorder.setColor(WebTheme.TEXT_FIELD_BORDER_COLOR);
-		c.setBorder(webBorder);
+		
+		c.setBorder(createWebBorder(WebTheme.TEXT_FIELD_BORDER_INSETS));
 		c.setFont(WebTheme.TEXT_FIELD_FONT);
 		c.setBackground(WebTheme.TEXT_FIELD_BG);
 		c.setForeground(WebTheme.TEXT_FIELD_FG);
@@ -44,6 +43,15 @@ public class UIWebTextField extends MetalTextFieldUI{
 		RepaintUtils.installListeners(c);
 	}
 	
+	protected Border createWebBorder(Insets insets) {
+		WebBorder webBorder = new WebBorder(insets);
+		webBorder.setPaintFocus(true);
+		webBorder.setFocusColor(WebTheme.TEXT_FIELD_FOCUS_COLOR);
+		webBorder.setColor(WebTheme.TEXT_FIELD_BORDER_COLOR);
+		webBorder.arcSize(WebTheme.TEXT_FIELD_BORDER_ROUND);
+		return webBorder;
+	}
+
 	@Override
 	protected void paintBackground(Graphics g) {
 		if(!(c.getBorder() instanceof WebBorder)){

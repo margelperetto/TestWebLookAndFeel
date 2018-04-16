@@ -41,7 +41,7 @@ public class ProgressBarTest extends JDialog {
 		add(pbV2, new CC().height("150").gapLeft("40"));
 		add(pbV3, new CC().height("150").gapLeft("40"));
 		
-		setTitle("App Test");
+		setTitle("ProgressBar Test");
 		pack();
 		setMinimumSize(getSize());
 		setLocationRelativeTo(null);

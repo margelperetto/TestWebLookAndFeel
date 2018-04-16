@@ -39,14 +39,9 @@ public class LoginTest extends JDialog{
 		buttonForgotPass.setBorder(new WebBorder(new Insets(2, 2, 2, 2)));
 		buttonForgotPass.setToolTipText("An email will be sent with a temporary password");
 		
-		WebBorder webBorder = new WebBorder(new Insets(50, 50, 50, 50));
-		webBorder.setArcHeight(50);
-		webBorder.setArcWidth(50);
-		webBorder.setColor(Color.decode("#0288D1"));
-
-		JPanel panel = new JPanel(new MigLayout(new LC().fillX()));
-		panel.setBorder(webBorder);
-		panel.add(new JLabel("Enter with your username or e-mail"), new CC().spanX().wrap());
+		JPanel panel = new JPanel(new MigLayout(new LC().insetsAll("50").fillX()));
+		panel.setBorder(new WebBorder().arcSize(50).color(Color.LIGHT_GRAY));
+		panel.add(new JLabel("Enter with your username or email"), new CC().spanX().wrap());
 		panel.add(textField, new CC().spanX().width("300").wrap());
 		panel.add(new JLabel("Password (6 digits)"), new CC().spanX().gapTop("20").wrap());
 		panel.add(passwordField, new CC().spanX().width("300").wrap());
@@ -58,7 +53,7 @@ public class LoginTest extends JDialog{
 		setLayout(new GridBagLayout());
 		add(panel);
 		((JPanel)getContentPane()).setOpaque(true);
-		((JPanel)getContentPane()).setBackground(Color.decode("#CFD8DC"));
+		((JPanel)getContentPane()).setBackground(Color.decode("#f7f9fb"));
 		
 		setTitle("Login Test");
 		pack();

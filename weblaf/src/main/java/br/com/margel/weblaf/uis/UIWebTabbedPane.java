@@ -41,7 +41,6 @@ public class UIWebTabbedPane extends MetalTabbedPaneUI{
 		super.installUI(c);
 		tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
 		LookAndFeel.installProperty(tabPane, "opaque", Boolean.FALSE);
-		contentBorderInsets = new Insets(2, 2, 2, 2);
 		c.setFocusable(false);
 		c.setForeground(WebTheme.TABBED_FG);
 	}
@@ -58,10 +57,20 @@ public class UIWebTabbedPane extends MetalTabbedPaneUI{
 		Rectangle rs = getTabBounds(selectedIndex, calcRect);
 		g2d.setStroke(new BasicStroke(2f));
 		g2d.setColor(selBorderUnderline);
-		if(tabPlacement == BOTTOM){
+		
+		switch (tabPlacement) {
+		case TOP:
+			g2d.drawLine(rs.x, rs.y+rs.height-1, rs.x+rs.width, rs.y+rs.height-1);
+			break;
+		case BOTTOM:
 			g2d.drawLine(rs.x, rs.y, rs.x+rs.width, rs.y);
-		}else{
-			g2d.drawLine(rs.x, rs.y+rs.height, rs.x+rs.width, rs.y+rs.height);
+			break;
+		case LEFT:
+			g2d.drawLine(rs.x+rs.width-1, rs.y, rs.x+rs.width-1, rs.y+rs.height);
+			break;
+		case RIGHT:
+			g2d.drawLine(rs.x, rs.y, rs.x, rs.y+rs.height);
+			break;
 		}
 
 		g2d.dispose();

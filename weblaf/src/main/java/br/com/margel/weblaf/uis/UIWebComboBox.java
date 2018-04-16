@@ -55,6 +55,7 @@ public class UIWebComboBox extends MetalComboBoxUI{
 		
 		webBorder = new WebBorder(new Insets(0, 0, 0, 0));
 		webBorder.setColor(WebTheme.COMBO_BORDER);
+		webBorder.arcSize(WebTheme.COMBO_BORDER_ROUND);
 		
 		comboBox.setBorder(webBorder);
 		comboBox.addFocusListener(new BorderPaintFocusAdapter());

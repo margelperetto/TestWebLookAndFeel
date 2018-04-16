@@ -13,13 +13,15 @@ import br.com.margel.weblaf.utils.IconUtils;
 
 public interface WebTheme {
 
-	Font TEXT_FIELD_FONT = new Font("Arial", Font.PLAIN, 16);
+	Font TEXT_FIELD_FONT = new Font("Arial", Font.PLAIN, 12);
 	Color TEXT_FIELD_BG = Color.WHITE;
 	Color TEXT_FIELD_FG = Color.DARK_GRAY;
 	Color TEXT_FIELD_FOCUS_COLOR = Color.decode("#80bdff");
 	Color TEXT_FIELD_BORDER_COLOR = Color.decode("#ced4da");
 	Color TEXT_FIELD_SELECTION_BG = Color.DARK_GRAY;
 	Color TEXT_FIELD_SELECTION_FG = Color.WHITE;
+	int TEXT_FIELD_BORDER_ROUND = 5;
+	Insets TEXT_FIELD_BORDER_INSETS = new Insets(10, 12, 10, 12);
 	
 	Color LIST_BG = Color.WHITE;
 	Color LIST_FG = Color.DARK_GRAY;
@@ -46,7 +48,7 @@ public interface WebTheme {
 	Font LABEL_FONT = new Font("Arial", Font.PLAIN, 12);
 	Color LABEL_FG = Color.DARK_GRAY;
 	
-	Color PANEL_BG = Color.decode("#f8f9fa");
+	Color PANEL_BG = Color.WHITE;
 
 	Color OPTIONPANE_BG = Color.WHITE;
 	
@@ -58,7 +60,7 @@ public interface WebTheme {
 	Color RADIO_FG = Color.DARK_GRAY;
 	Font RADIO_FONT = new Font("Arial", Font.PLAIN, 12);
 	
-	Font COMBO_FONT = new Font("Arial", Font.PLAIN, 16);
+	Font COMBO_FONT = new Font("Arial", Font.PLAIN, 12);
 	Color COMBO_FG = Color.DARK_GRAY;
 	Color COMBO_BORDER = Color.decode("#ced4da");
 	Color COMBO_BUTTON_BG = Color.DARK_GRAY;
@@ -66,18 +68,18 @@ public interface WebTheme {
 	Color COMBO_SELECT_BG = new Color(240, 240, 240);
 	Color COMBO_FOCO = Color.decode("#80bdff");
 	Color COMBO_BG = Color.WHITE;
-	Color COMBO_ARROW = Color.DARK_GRAY;
+	Color COMBO_ARROW = Color.GRAY;
+	int COMBO_BORDER_ROUND = 5;
 	
-	Color SCROLLBAR_THUMB = Color.LIGHT_GRAY;
-	Color SCROLLBAR_THUMB_LINES = Color.BLACK;
-	Color SCROLLBAR_TRACK = Color.WHITE;
-	Color SCROLLBAR_ARROW = Color.DARK_GRAY;
+	Color SCROLLBAR_THUMB = Color.decode("#cdcdcd");
+	Color SCROLLBAR_TRACK = Color.decode("#f0f0f0");
+	Color SCROLLBAR_ARROW = Color.GRAY;
 	
 	Color SCROLL_BORDER = Color.decode("#ced4da");
 	
 	Color SEPARATOR_FOREGROUND = Color.decode("#ced4da");
 	
-	Color SPINNER_ARROW = Color.DARK_GRAY;
+	Color SPINNER_ARROW = Color.GRAY;
 	
 	Color SLIDER_BUTTON_BG = Color.DARK_GRAY;
 	Color SLIDER_BUTTON_FG = Color.DARK_GRAY;
@@ -99,7 +101,7 @@ public interface WebTheme {
 	Color SEPARATOR_COLOR = Color.LIGHT_GRAY;
 	
 	Border TITLEDBORDER_BORDER = new WebBorder(new Insets(2, 10, 2, 10));
-	Font TITLEDBORDER_FONT = new Font("Arial", Font.PLAIN, 16);
+	Font TITLEDBORDER_FONT = new Font("Arial", Font.PLAIN, 12);
 	Color TITLEDBORDER_FG = Color.DARK_GRAY;
 	
 	Color TREE_HASH = new Color(215, 225, 245);
