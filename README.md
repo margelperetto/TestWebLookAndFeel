@@ -5,12 +5,7 @@ A Java Swing Look and Feel similar to web pages.
 
 ## Screenshots
 
-![alt text](https://github.com/margelperetto/weblaf/blob/master/screenshots/login.JPG "ScreenShot Login")
-
-![alt text](https://github.com/margelperetto/weblaf/blob/master/screenshots/checkout.gif "ScreenShot Checkout")
-
 ![alt text](https://github.com/margelperetto/weblaf/blob/master/screenshots/complex_form.gif "ScreenShot ComplexForm")
-
 
 ## To run a preview
 ```
