@@ -31,6 +31,7 @@ public class AppTest extends JFrame {
 		add(createButton("Slider test", e-> new SliderTest(this).setVisible(true)), new CC().grow());
 		add(createButton("ProgressBar test", e-> new ProgressBarTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Tabbed test", e-> new TabbedTest(this).setVisible(true)), new CC().grow());
+		add(createButton("Tabbed Icon test", e-> new TabbedIconTest(this).setVisible(true)), new CC().grow());
 		add(createButton("TextArea test", e-> new TextAreaTest(this).setVisible(true)), new CC().grow());
 		add(createButton("SplitPane test", e-> new SplitTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Option test", e-> new OptionTest(this).setVisible(true)), new CC().grow());

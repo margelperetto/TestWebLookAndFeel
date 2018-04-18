@@ -28,30 +28,35 @@ public class SizesTest extends JDialog {
 	public SizesTest(Window owner) {
 		super(owner);
 		try {
-			setLayout(new MigLayout(new LC().insetsAll("50").gridGapX("15").wrapAfter(5).debug(100)));
+			setLayout(new MigLayout(new LC().insetsAll("50").gridGapX("15").wrapAfter(6).debug(100)));
 			add(new JLabel("TEXTFIELD"));
 			add(new JLabel("JSPINNER"));
 			add(new JLabel("JCOMBOBOX"));
+			add(new JLabel("EDITCOMBOBOX"));
 			add(new JLabel("FORMATTEDTEXT"));
 			add(new JLabel("PASSWORFIELD"));
 
 			add(new JTextField("Text field"), new CC().growX().alignY("top"));
 			add(new JSpinner(new SpinnerNumberModel(999, 0, 9999, 1)), new CC().growX().alignY("top"));
 			add(new JComboBox<>(months), new CC().growX().alignY("top"));
+			add(new JComboBox<Object>(months){{setEditable(true);}}, new CC().growX().alignY("top"));
 			add(new JFormattedTextField(new MaskFormatter("#####-###")), new CC().growX().alignY("top"));
 			add(new JPasswordField("123456"), new CC().growX().alignY("top"));
 
 			add(new JLabel("TEXTFIELD"));
 			add(new JLabel("JSPINNER"));
 			add(new JLabel("JCOMBOBOX"));
+			add(new JLabel("EDITCOMBOBOX"));
 			add(new JLabel("FORMATTEDTEXT"));
 			add(new JLabel("PASSWORFIELD"));
 
-			add(c(12, new JTextField("Text field")), new CC().growX().alignY("top"));
-			add(c(12, new JSpinner(new SpinnerNumberModel(999, 0, 9999, 1))), new CC().growX().alignY("top"));
-			add(c(12, new JComboBox<>(months)), new CC().growX().alignY("top"));
-			add(c(12, new JFormattedTextField(new MaskFormatter("#####-###"))), new CC().growX().alignY("top"));
-			add(c(12, new JPasswordField("123456")), new CC().growX().alignY("top"));
+			int fontSize = 18;
+			add(c(fontSize, new JTextField("Text field")), new CC().growX().alignY("top"));
+			add(c(fontSize, new JSpinner(new SpinnerNumberModel(999, 0, 9999, 1))), new CC().growX().alignY("top"));
+			add(c(fontSize, new JComboBox<>(months)), new CC().growX().alignY("top"));
+			add(c(fontSize, new JComboBox<Object>(months){{setEditable(true);}}), new CC().growX().alignY("top"));
+			add(c(fontSize, new JFormattedTextField(new MaskFormatter("#####-###"))), new CC().growX().alignY("top"));
+			add(c(fontSize, new JPasswordField("123456")), new CC().growX().alignY("top"));
 
 			setTitle("Sizes Test");
 			pack();
@@ -69,6 +74,10 @@ public class SizesTest extends JDialog {
 			s.getEditor().setFont(comp.getFont());
 			s.getEditor().getComponent(0).setFont(comp.getFont());
 		}
+//		if (comp instanceof JComboBox) {
+//			JComboBox<?> s = (JComboBox<?>)comp;
+//			s.getEditor().getEditorComponent().setFont(comp.getFont());
+//		}
 		return comp;
 	}
 

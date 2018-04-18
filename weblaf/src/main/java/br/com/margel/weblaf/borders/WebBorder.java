@@ -64,7 +64,10 @@ public class WebBorder extends EmptyBorder{
 	}
 	
 	public WebBorder insets(int top, int left, int bottom, int right) {
-		this.getBorderInsets().set(top, left, bottom, right);
+		this.left = left; 
+		this.right = right; 
+		this.top = top; 
+		this.bottom = bottom;
 		return this;
 	}
 	
