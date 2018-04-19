@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
 
@@ -30,6 +31,9 @@ public class SpinnerTest extends JDialog {
 		JSpinner tb4 = new JSpinner(new SpinnerNumberModel(2000, 0, 9999, 100));
 		tb4.setEditor(new JSpinner.NumberEditor(tb4, "0000"));
 		JSpinner tb5 = new JSpinner(new SpinnerNumberModel(2000, 0, 9999, 100));
+		JSpinner tb6 = new JSpinner(new SpinnerDateModel());
+		tb6.setEditor(new JSpinner.DateEditor(tb6, "HH:mm dd/MM/yyyy"));
+		JSpinner tb7 = new JSpinner(new SpinnerDateModel());
 		
 		setLayout(new MigLayout(new LC().insetsAll("50")));
 		add(new JLabel("Move focus here for test"), new CC().spanX());
@@ -37,12 +41,14 @@ public class SpinnerTest extends JDialog {
 		add(new JLabel("Spinner Tests"), new CC().spanX().wrap());
 		add(tb0, new CC());
 		add(tb1, new CC());
-		add(tb2, new CC().wrap());
+		add(tb2, new CC());
+		add(tb6, new CC().wrap());
 		add(tb3, new CC());
 		add(tb4, new CC());
 		add(tb5, new CC());
+		add(tb7, new CC());
 		
-		setTitle("App Test");
+		setTitle("Spinner Test");
 		pack();
 		setMinimumSize(getSize());
 		setLocationRelativeTo(null);

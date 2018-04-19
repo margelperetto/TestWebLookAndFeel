@@ -2,14 +2,16 @@ package br.com.margel.weblaf.tests;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Window;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
+import br.com.margel.weblaf.borders.WebBorder;
 import net.miginfocom.layout.CC;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
@@ -39,17 +41,34 @@ public class TabbedTest extends JDialog {
 		tab.addTab("Tab 3", createContent(new Color(200, 200, 240), "Tab 3"));
 		tab.addTab("Tab 4", createContent(new Color(240, 200, 200), "Tab 4"));
 		tab.setSelectedIndex(selectedIndex);
-		tab.setPreferredSize(new Dimension(400, 300));
 		return tab;
 	}
 
 	private Component createContent(Color bg, String text) {
 		JLabel label = new JLabel(text, JLabel.CENTER);
-		label.setForeground(Color.BLACK);
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 22f));
+		label.setForeground(Color.DARK_GRAY);
+		label.setFont(label.getFont().deriveFont(22f));
 		label.setOpaque(true);
 		label.setBackground(bg);
-		return label;
+		label.setBorder(new WebBorder());
+		String gap = "25";
+		JPanel panel = new JPanel(new MigLayout(new LC().insetsAll(gap)));
+		panel.add(label, new CC().spanY().width("150!").gapRight(gap).growY());
+		panel.add(new JLabel("Name"), new CC().wrap());
+		panel.add(new JTextField(text), new CC().width("180").wrap());
+		panel.add(new JLabel("Address"), new CC().wrap());
+		panel.add(new JTextField("Address "+text), new CC().width("180").gapBottom(gap).wrap());
+		panel.add(createBtn("Save", Color.CYAN.darker()), new CC().split().spanX());
+		panel.add(createBtn("Cancel", Color.GRAY), new CC());
+		return panel;
+	}
+
+	private Component createBtn(String text, Color color) {
+		JButton btn = new JButton(text);
+		btn.setOpaque(false);
+		btn.setBackground(color);
+		btn.setForeground(color);
+		return btn;
 	}
 	
 }

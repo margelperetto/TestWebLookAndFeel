@@ -73,11 +73,8 @@ public class UIWebComboBox extends MetalComboBoxUI{
 		c.addFocusListener(new BorderPaintFocusAdapter());
 		if(c instanceof JComponent){
 			JComponent jc = (JComponent)c;
-			jc.setBorder(new EmptyBorder(1, 3, 1, 1));
+			jc.setBorder(new EmptyBorder(6, 3, 6, 1));
 			jc.setOpaque(false);
-			Dimension d = jc.getPreferredSize();
-			d.height = jc.getFontMetrics(jc.getFont()).getHeight()+10;
-			jc.setPreferredSize(d);
 		}
 		return editor;
 	}
@@ -152,4 +149,5 @@ public class UIWebComboBox extends MetalComboBoxUI{
 			webBorder.setColor(WebTheme.COMBO_BORDER);
 		}
 	}
+	
 }

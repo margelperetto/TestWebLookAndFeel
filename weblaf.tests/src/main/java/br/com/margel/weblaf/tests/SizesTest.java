@@ -50,7 +50,7 @@ public class SizesTest extends JDialog {
 			add(new JLabel("FORMATTEDTEXT"));
 			add(new JLabel("PASSWORFIELD"));
 
-			int fontSize = 18;
+			int fontSize = 16;
 			add(c(fontSize, new JTextField("Text field")), new CC().growX().alignY("top"));
 			add(c(fontSize, new JSpinner(new SpinnerNumberModel(999, 0, 9999, 1))), new CC().growX().alignY("top"));
 			add(c(fontSize, new JComboBox<>(months)), new CC().growX().alignY("top"));
