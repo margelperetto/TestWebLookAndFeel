@@ -1,13 +1,20 @@
 package br.com.margel.weblaf.tests;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,18 +40,22 @@ import net.miginfocom.swing.MigLayout;
 @SuppressWarnings("serial")
 public class ComplexFormTest extends JFrame{
 	
+	private JPanel panelContent = new JPanel(new BorderLayout(0,0));
+	
 	public ComplexFormTest(JFrame owner) {
+		panelContent.setBackground(Color.decode("#f7f9fb"));
+		
 		setLayout(new MigLayout(new LC().insetsAll("0").gridGap("0", "0")));
 		add(createPanelProfile(), new CC().grow());
 		add(createPanelCompanyName(), new CC().width("100%").growY().wrap());
 		add(createPanelMenus(), new CC().height("100%").growX());
-		add(createPanelContent(), new CC().grow());
+		add(createScrollContent(panelContent), new CC().grow());
 		
 		setTitle("ComplexForm Test");
 		pack();
 		int sh = Toolkit.getDefaultToolkit().getScreenSize().height-80;
 		setSize(new Dimension(getWidth()+20, Math.min(getHeight(), sh)));
-		setMinimumSize(new Dimension(getWidth(), 600));
+		setMinimumSize(new Dimension(800, 500));
 		setLocationRelativeTo(null);
 	}
 	
@@ -74,41 +85,83 @@ public class ComplexFormTest extends JFrame{
 		JPanel pMenu = new JPanel(new MigLayout(new LC().wrapAfter(1).insets("12.5", "0", "0", "0").gridGapY("0").fillX()));
 		pMenu.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).right());
 		
-		pMenu.add(createPanelItemMenu("dashboard25x25.PNG", "Dashboard", "#5b7583", false), new CC().growX());
-		pMenu.add(createPanelItemMenu("analytics25x25.PNG", "Analytics", "#5b7583", false), new CC().growX());
-		pMenu.add(createPanelItemMenu("business25x25.PNG", "Business", "#5b7583", false), new CC().growX());
-		pMenu.add(createPanelItemMenu("company25x25.PNG", "My Company", "#04b7a8", true), new CC().growX());
-		pMenu.add(createPanelItemMenu("admin25x25.PNG", "Admin", "#5b7583", false), new CC().growX());
+		pMenu.add(createPanelItemMenu("dashboard25x25.PNG", "Dashboard", true, createPanelDashboard()), new CC().growX());
+		pMenu.add(createPanelItemMenu("analytics25x25.PNG", "Analytics", false, new JLabel("Analytics")), new CC().growX());
+		pMenu.add(createPanelItemMenu("business25x25.PNG", "Business", false, new JLabel("Business")), new CC().growX());
+		pMenu.add(createPanelItemMenu("company25x25.PNG", "My Company", false, createPanelMyCompany()), new CC().growX());
+		pMenu.add(createPanelItemMenu("admin25x25.PNG", "Admin", false, new JLabel("Admin")), new CC().growX());
 
 		pMenu.add(new JLabel(""), new CC().height("100%"));
-		pMenu.add(createPanelCredits(), new CC().growX());
+		pMenu.add(createPanelItemCredits(), new CC().growX());
 		
 		return pMenu;
 	}
 	
-	private Component createPanelCredits() {
-		JPanel pCredits = createPanelItemMenu("help25x25.PNG", "Help / Credits", "#5b7583", false);
+	private Component createPanelItemCredits() {
+		JPanel pCredits = createPanelItemMenu("help25x25.PNG", "Help / Credits", false, new JLabel("Help"));
 		pCredits.setToolTipText("<html>This layout was inspired by an example presented in <br>"
 				+ "<b style=\"color=#b8e8e4\">https://www.yummygum.com</b>.</html>");
-		pCredits.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).top());
 		return pCredits;
 	}
 
-	private JPanel createPanelItemMenu(String icon, String text, String fg, boolean selected) {
+	private JPanel createPanelItemMenu(String icon, String text, boolean selected, JComponent component) {
+		
+		MouseListener mouseListener = new ItemMenuMouseListener(Color.decode("#f7f9fb"), panelContent, component);
 		JPanel pItemMenu = createNonOpaquePanel(new LC().insets("12.5", "25", "12.5", "25").gridGapX("15"));
+		pItemMenu.setBorder(new ParcialBorder().color(Color.WHITE).stroke(5).left());
 		pItemMenu.add(new JLabel(IconUtils.getImageIcon(icon)));
-		pItemMenu.add(createLabel(text, Color.decode(fg), 12f));
+		pItemMenu.add(createLabel(text, Color.decode("#5b7583"), 12f));
 		pItemMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		if(selected) pItemMenu.setBorder(new ParcialBorder().color(Color.decode(fg)).stroke(5).left());
+		pItemMenu.addMouseListener(mouseListener);
+		
+		if(selected){
+			MouseEvent e = new MouseEvent(pItemMenu, 0, 0, 0, 0, 0, 0, false);
+			mouseListener.mousePressed(e);
+		}
 		return pItemMenu;
 	}
 	
-	private JComponent createPanelContent() {
+	private JPanel createPanelDashboard() {
+		JPanel pDashboard = new JPanel(new MigLayout(new LC().insetsAll("20").gridGap("20", "20").wrapAfter(3)));
+		for (int i = 1; i <= 6; i++) {
+			pDashboard.add(createCardDashboard(i), new CC().growY());
+		}
+		pDashboard.setOpaque(false);
+		
+		JPanel panelDash = new JPanel(new GridBagLayout());
+		panelDash.setBackground(Color.decode("#f7f9fb"));
+		panelDash.add(pDashboard);
+		return panelDash;
+	}
+	
+	private Component createCardDashboard(int index) {
+		JPanel pCardDash = new JPanel(new MigLayout(new LC().insetsAll("20").wrapAfter(1)));
+		pCardDash.setBackground(Color.WHITE);
+		pCardDash.setBorder(new WebBorder());
+		pCardDash.add(new JLabel(IconUtils.getImageIcon("item_dash"+index+"_50x50.PNG")), new CC().alignX("center").gapBottom("20"));
+		pCardDash.add(createLabel("Item dashboard "+index, Color.decode("#04b7a8"), Font.BOLD, 12f), new CC().alignX("center"));
+		pCardDash.add(createLabel("This is a simple text description for a ", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
+		pCardDash.add(createLabel("dashboard card. Dothing will happend", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
+		pCardDash.add(createLabel("when you click here, it's just a test.", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
+		pCardDash.add(createItemDashboardBtn(), new CC().alignX("center").gapTop("20").width("150").height("50"));
+		pCardDash.setPreferredSize(new Dimension(290, 0));
+		return pCardDash;
+	}
+
+	private Component createItemDashboardBtn() {
+		JButton btn = new JButton("Button");
+		btn.setOpaque(false);
+		btn.setForeground(Color.decode("#5b7583"));
+		btn.setBackground(Color.decode("#04b7a8"));
+		return btn;
+	}
+
+	private JComponent createPanelMyCompany() {
 		JPanel pContent = new JPanel(new MigLayout(new LC().insetsAll("25").gridGapY("25").wrapAfter(1)));
 		pContent.setBackground(Color.decode("#f7f9fb"));
 		pContent.add(createPanelInfos());
 		pContent.add(createPanelBranch());
-		return createScrollContent(pContent);
+		return pContent;
 	}
 
 	private Component createPanelInfos() {
@@ -219,6 +272,64 @@ public class ComplexFormTest extends JFrame{
 	
 	private JLabel createLabel(String text, Color fg, float size) {
 		return createLabel(text, fg, Font.PLAIN, size);
+	}
+	
+	//----------LISTENERS
+	
+	public static class ItemMenuMouseListener extends MouseAdapter{
+		
+		private final Color mouseEnteredBgColor;
+		private Boolean opaque;
+		private Color mouseExitedBgColor;
+		
+		private final JPanel content;
+		private final JComponent component;
+		protected static Map<JPanel, Component> LAST_CLICKED = new HashMap<>();
+		
+		public ItemMenuMouseListener(Color mouseEnteredBgColor, JPanel content, JComponent component) {
+			this.mouseEnteredBgColor = mouseEnteredBgColor;
+			this.content = content;
+			this.component = component;
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			JComponent comp = (JComponent) e.getComponent();
+			if(opaque == null) opaque = comp.isOpaque();
+			if(mouseExitedBgColor==null) mouseExitedBgColor = comp.getBackground();
+			comp.setOpaque(true);
+			comp.setBackground(mouseEnteredBgColor);
+			comp.repaint();
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent e) {
+			JComponent comp = (JComponent) e.getComponent();
+			comp.setOpaque(opaque);
+			comp.setBackground(mouseExitedBgColor);
+			comp.repaint();
+		}
+		
+		@Override
+		public void mousePressed(MouseEvent e) {
+			JComponent last = getLastComponentClicked();
+			if(last!=null){
+				((ParcialBorder)last.getBorder()).setColor(Color.WHITE);
+				last.repaint();
+			}
+			JComponent itemComp = (JComponent) e.getComponent();
+			((ParcialBorder)itemComp.getBorder()).setColor(Color.decode("#04b7a8"));
+			content.removeAll();
+			content.add(component);
+			content.revalidate();
+			
+			LAST_CLICKED.put(content, itemComp);
+			itemComp.repaint();
+		}
+		
+		public JComponent getLastComponentClicked(){
+			return (JComponent)LAST_CLICKED.get(content);
+		}
 	}
 	
 }
