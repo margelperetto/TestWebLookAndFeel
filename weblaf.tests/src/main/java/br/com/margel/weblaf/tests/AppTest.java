@@ -19,10 +19,10 @@ public class AppTest extends JFrame {
 	
 	public AppTest(){
 		
-		setLayout(new MigLayout(new LC().insetsAll("25").gridGap("25", "25").wrapAfter(4).fill()));
+		setLayout(new MigLayout(new LC().insetsAll("25").gridGap("25", "25").wrapAfter(5).fill()));
+		add(createButton("Simple aplication test", e-> new ComplexFormTest(this).setVisible(true)), new CC().grow().wrap().gapBottom("50").gapTop("50"));
 		add(createButton("Login test", e-> new LoginTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Checkout test", e-> new CheckoutPageTest().setVisible(true)), new CC().grow());
-		add(createButton("ComplexForm test", e-> new ComplexFormTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Button test", e-> new ButtonTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Toggle test", e-> new ToggleButtonTest(this).setVisible(true)), new CC().grow());
 		add(createButton("Radio & Check", e-> new RadioCheckTest(this).setVisible(true)), new CC().grow());
