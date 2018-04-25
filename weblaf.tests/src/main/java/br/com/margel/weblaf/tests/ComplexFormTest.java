@@ -38,6 +38,7 @@ import br.com.margel.weblaf.borders.ParcialBorder;
 import br.com.margel.weblaf.borders.WebBorder;
 import br.com.margel.weblaf.components.PlaceHolderTextField;
 import br.com.margel.weblaf.utils.IconUtils;
+import br.com.margel.weblaf.utils.LB;
 import net.miginfocom.layout.CC;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
@@ -167,7 +168,7 @@ public class ComplexFormTest extends JFrame{
 
 	private Component createGridHeader(String text) {
 		JPanel pGridHeader = new JPanel(new MigLayout(new LC().insetsAll("12.5").gridGapX("12.5")));
-		pGridHeader.add(new JLabel(IconUtils.arrowIcon(new Dimension(10, 10), JLabel.SOUTH, 1, Color.darkGray)));
+		pGridHeader.add(new LB().cursor(Cursor.HAND_CURSOR).icon(IconUtils.arrowIcon(new Dimension(10, 10), JLabel.SOUTH, 1, Color.darkGray)));
 		pGridHeader.add(new JLabel(text));
 		pGridHeader.setBackground(Color.decode("#f7f9fb"));
 		pGridHeader.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).bottom());
@@ -270,7 +271,7 @@ public class ComplexFormTest extends JFrame{
 		pFilterFields.add(createLabel("Join", Color.decode("#5b7583"), 12f), new CC().gapLeft("12.5"));
 		Collections.shuffle(fields);
 		pFilterFields.add(new JComboBox<>(fields.toArray()));
-		pFilterFields.add(new JLabel(IconUtils.getImageIcon("settings25x25.png")), new CC().alignX("right").gapLeft("12.5"));
+		pFilterFields.add(new LB().icon(IconUtils.getImageIcon("settings25x25.png")).cursor(Cursor.HAND_CURSOR), new CC().alignX("right").gapLeft("12.5"));
 		
 		JPanel pItemFilter = new JPanel(new BorderLayout(0,0));
 		pItemFilter.setBorder(new WebBorder(new Insets(2, 2, 2, 2)).color(Color.decode("#e1e6eb")).arcSize(12));
@@ -298,7 +299,7 @@ public class ComplexFormTest extends JFrame{
 		JPanel pSavedFilter = new JPanel(new MigLayout(new LC().insets("12.5", "0", "12.5", "0").fill()));
 		pSavedFilter.setOpaque(false);
 		pSavedFilter.add(createLabel(text, Color.decode("#5b7583"), 12f), new CC().alignY("center"));
-		pSavedFilter.add(new JLabel(IconUtils.getImageIcon("settings25x25.png")), new CC().alignX("right").alignY("center"));
+		pSavedFilter.add(new LB().icon(IconUtils.getImageIcon("settings25x25.png")).cursor(Cursor.HAND_CURSOR), new CC().alignX("right").alignY("center"));
 		pSavedFilter.setBorder(new ParcialBorder().color(Color.decode("#e1e6eb")).top());
 		return pSavedFilter;
 	}

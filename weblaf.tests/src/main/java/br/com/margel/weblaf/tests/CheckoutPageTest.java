@@ -32,39 +32,42 @@ import br.com.margel.weblaf.WebTheme;
 import br.com.margel.weblaf.borders.ParcialBorder;
 import br.com.margel.weblaf.borders.WebBorder;
 import br.com.margel.weblaf.utils.IconUtils;
+import br.com.margel.weblaf.utils.LB;
 import net.miginfocom.layout.CC;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class CheckoutPageTest extends JFrame {
-	
+
 	public CheckoutPageTest() {
-		
+
 		JPanel panelPrincipal = new JPanel(new MigLayout(new LC().insetsAll("20").gridGap("20", "20").fillX()));
+		panelPrincipal.setOpaque(false);
 		panelPrincipal.add(createTitleLabel(), new CC().alignX("center").spanX().wrap());
 		panelPrincipal.add(createSubTitleLabel(), new CC().width("0:80%:").spanX().alignX("center").wrap());
 		panelPrincipal.add(createPanelUserInfos(), new CC());
 		panelPrincipal.add(createPanelCart(), new CC().alignY("top").wrap());
-		panelPrincipal.add(createFooterLabel(), new CC().spanX().alignX("center").gapTop("80").wrap());
-		
+		panelPrincipal.add(new LB("© 2017-2018 Company Name").fg(Color.GRAY).font(16f), new CC().spanX().alignX("center").gapTop("80").wrap());
+
 		JPanel panelScroll = new JPanel(new GridBagLayout());
+		panelScroll.setBackground(Color.decode("#f7f9fb"));
 		panelScroll.add(panelPrincipal);
 		JScrollPane scroll = new JScrollPane(panelScroll);
 		scroll.getVerticalScrollBar().setUnitIncrement(20);
-		
+
 		setLayout(new BorderLayout());
 		add(scroll);
-		
+
 		setTitle("Checkout Test");
 		setSize(new Dimension(1024, 700));
 		setMinimumSize(new Dimension(900, 200));
 		setLocationRelativeTo(null);
 		setExtendedState(MAXIMIZED_BOTH);
 	}
-	
+
 	private JPanel createPanelCart() {
-		
+
 		JPanel panelItens = new JPanel(new MigLayout(new LC().wrapAfter(1).gridGapY("0").insetsAll("0").fillX()));
 		panelItens.setOpaque(true);
 		panelItens.setBackground(Color.WHITE);
@@ -74,11 +77,11 @@ public class CheckoutPageTest extends JFrame {
 		panelItens.add(createPanelItem("Product Item 3", "$ 30,00", Color.BLACK, Color.GRAY, null), new CC().growX());
 		panelItens.add(createPanelItem("Promo Code", "- $ 10,00", Color.GREEN.darker().darker(), Color.GREEN.darker(), new Color(241, 251, 241)), new CC().growX());
 		panelItens.add(createTotalItem("$ 50,00"), new CC().growX());
-		
+
 		JButton btnPromoCode = new JButton("Redeem");
 		btnPromoCode.setBackground(Color.decode("#6c757d"));
 		btnPromoCode.setForeground(Color.WHITE);
-		
+
 		JPanel panelPromoCode = new JPanel(new MigLayout(new LC().fillX()));
 		panelPromoCode.setOpaque(true);
 		panelPromoCode.setBackground(Color.WHITE);
@@ -86,13 +89,14 @@ public class CheckoutPageTest extends JFrame {
 		panelPromoCode.add(new JLabel("Promo code"), new CC().wrap());
 		panelPromoCode.add(new JTextField(), new CC().spanX().split().growX());
 		panelPromoCode.add(btnPromoCode, new CC().growY());
-		
+
 		JPanel panelCart = new JPanel(new MigLayout(new LC()));
-		panelCart.add(createCartTitleLabel(), new CC());
+		panelCart.setOpaque(false);
+		panelCart.add(new LB("Your cart").font(Font.BOLD, 24f), new CC());
 		panelCart.add(createCartItemCountLabel(), new CC().width("30!").height("25!").alignY("center").alignX("right").wrap());
 		panelCart.add(panelItens, new CC().width("300").spanX().wrap());
 		panelCart.add(panelPromoCode, new CC().gapTop("10").spanX().growX());
-		
+
 		return panelCart;
 	}
 
@@ -100,21 +104,21 @@ public class CheckoutPageTest extends JFrame {
 		JLabel labelProduct = new JLabel(productName);
 		labelProduct.setFont(labelProduct.getFont().deriveFont(16f));
 		labelProduct.setForeground(fg1);
-		
+
 		JLabel labelPrice = new JLabel(price);
 		labelPrice.setFont(labelProduct.getFont().deriveFont(16f));
 		labelPrice.setForeground(fg2);
-		
+
 		JLabel labelDescription = new JLabel("Product description");
 		labelDescription.setFont(labelProduct.getFont().deriveFont(14f));
 		labelDescription.setForeground(fg2);
-		
+
 		JPanel panelItem = new JPanel(new MigLayout(new LC().insetsAll("15").gridGapY("10").fillX()));
-		if(bg!=null){
+		if (bg != null) {
 			panelItem.setOpaque(true);
 			panelItem.setBackground(bg);
 			labelDescription.setText("Promo description");
-		}else{
+		} else {
 			panelItem.setOpaque(false);
 		}
 		panelItem.add(labelProduct);
@@ -123,16 +127,16 @@ public class CheckoutPageTest extends JFrame {
 		panelItem.setBorder(new ParcialBorder().bottom().color(WebTheme.TEXT_FIELD_BORDER_COLOR));
 		return panelItem;
 	}
-	
+
 	private Component createTotalItem(String price) {
 		JLabel labelTotal = new JLabel("TOTAL (USD)");
 		labelTotal.setFont(labelTotal.getFont().deriveFont(16f));
 		labelTotal.setForeground(Color.BLACK);
-		
+
 		JLabel labelTotalPrice = new JLabel(price);
 		labelTotalPrice.setForeground(Color.BLACK);
 		labelTotalPrice.setFont(labelTotal.getFont().deriveFont(Font.BOLD, 16f));
-		
+
 		JPanel panelTotal = new JPanel(new MigLayout(new LC().insetsAll("15").fillX()));
 		panelTotal.setOpaque(false);
 		panelTotal.add(labelTotal);
@@ -140,89 +144,74 @@ public class CheckoutPageTest extends JFrame {
 		return panelTotal;
 	}
 
-	private Component createCartItemCountLabel() {
-		WebBorder webBorder = new WebBorder(new Insets(1, 1, 1, 1));
-		webBorder.setColor(Color.DARK_GRAY);
-		JLabel label = new JLabel("3", JLabel.CENTER);
-		label.setOpaque(true);
-		label.setBorder(webBorder);
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 24f));
-		label.setBackground(Color.DARK_GRAY);
-		label.setForeground(Color.WHITE);
-		return label;
-	}
-
 	private JPanel createPanelUserInfos() {
 		JPanel panelUserInfos = new JPanel(new MigLayout(new LC().gridGapX("20")));
-		
-		panelUserInfos.add(createUserInfoTitleLabel(), new CC().spanX().wrap());
-		
+		panelUserInfos.setOpaque(false);
+
+		panelUserInfos.add(new LB("Billing address").font(Font.BOLD, 24f), new CC().spanX().wrap());
+
 		panelUserInfos.add(new JLabel("First name"), new CC().gapTop("20"));
 		panelUserInfos.add(new JLabel("Last name"), new CC().gapTop("20").wrap());
-		
+
 		panelUserInfos.add(new JTextField(), new CC().width("300"));
 		panelUserInfos.add(new JTextField(), new CC().width("300").wrap());
-		
+
 		panelUserInfos.add(new JLabel("Username"), new CC().gapTop("20").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
-		
+
 		panelUserInfos.add(new JLabel("Email"), new CC().gapTop("20").spanX().split());
-		panelUserInfos.add(createLabel(" (Optional)", new Color(100, 150, 200)), new CC().gapTop("20").gapLeft("0").wrap());
+		panelUserInfos.add(new LB(" (Optional)").fg(new Color(100, 150, 200)),new CC().gapTop("20").gapLeft("0").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
-		
+
 		panelUserInfos.add(new JLabel("Address"), new CC().gapTop("20").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
-		
+
 		panelUserInfos.add(new JLabel("Address2"), new CC().gapTop("20").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX().spanX().wrap());
-		
+
 		JPanel panelLocale = new JPanel(new MigLayout(new LC().wrapAfter(3).fillX().insetsAll("0").gridGapX("20")));
+		panelLocale.setOpaque(false);
 		panelLocale.add(new JLabel("Country"), new CC());
 		panelLocale.add(new JLabel("State"), new CC());
 		panelLocale.add(new JLabel("Zip"), new CC());
-		panelLocale.add(createCountryCombo(), new CC().growX());
-		panelLocale.add(createStateCombo(), new CC().growX());
+		panelLocale.add(new JComboBox<>(new String[] {"", "Brazil", "Other" }), new CC().growX());
+		panelLocale.add(new JComboBox<>(new String[] {"", "Rio Grande do Sul", "Santa Cataria", "Parana", "São Paulo", "Rio de Janeiro" }), new CC().growX());
 		panelLocale.add(createZipTextField(), new CC().minWidth("110").growX());
-		
+
 		panelUserInfos.add(panelLocale, new CC().growX().gapTop("20").spanX());
 		panelUserInfos.add(new JSeparator(), new CC().gapTop("20").growX().spanX().wrap());
-		panelUserInfos.add(createCheck("Shipping address is the same as my billing address"), new CC().spanX().gapTop("20").wrap());
+		panelUserInfos.add(createCheck("Shipping address is the same as my billing address"),new CC().spanX().gapTop("20").wrap());
 		panelUserInfos.add(createCheck("Save this information for next time"), new CC().spanX().gapTop("10").wrap());
 		panelUserInfos.add(new JSeparator(), new CC().gapTop("20").growX().spanX().wrap());
-		
-		panelUserInfos.add(createPaymentTitleLabel(), new CC().gapTop("20").wrap());
+
+		panelUserInfos.add(new LB("Payment").font(Font.BOLD, 24f), new CC().gapTop("20").wrap());
 		ButtonGroup bg = new ButtonGroup();
 		panelUserInfos.add(createPaymentCheck("Credit Card", true, bg), new CC().spanX().gapTop("10").wrap());
 		panelUserInfos.add(createPaymentCheck("Debit card", false, bg), new CC().spanX().gapTop("10").wrap());
 		panelUserInfos.add(createPaymentCheck("Paypal", false, bg), new CC().spanX().gapTop("10").wrap());
-		
+
 		panelUserInfos.add(new JLabel("Name on card"), new CC().gapTop("20"));
 		panelUserInfos.add(new JLabel("Credit card number"), new CC().gapTop("20").wrap());
 		panelUserInfos.add(new JTextField(), new CC().growX());
 		panelUserInfos.add(new JTextField(), new CC().growX().wrap());
-		panelUserInfos.add(createCardMsgLabel(), new CC().spanX().wrap());
-		
+		panelUserInfos.add(new LB("Full name as displayed on card").fg(Color.GRAY), new CC().spanX().wrap());
+
 		JPanel panelCardInfos = new JPanel(new MigLayout(new LC().wrapAfter(2).insetsAll("0").gridGapX("20")));
+		panelCardInfos.setOpaque(false);
 		panelCardInfos.add(new JLabel("Expiration (month / year)"), new CC());
 		panelCardInfos.add(new JLabel("CVV"), new CC());
-		panelCardInfos.add(new JSpinner(new SpinnerListModel(new DateFormatSymbols(Locale.US).getMonths())), new CC().split(2));
+		panelCardInfos.add(new JSpinner(new SpinnerListModel(new DateFormatSymbols(Locale.US).getMonths())),new CC().split(2));
 		panelCardInfos.add(createSpinnerYear(), new CC());
 		panelCardInfos.add(new JTextField(), new CC().width("200"));
-		
+
 		panelUserInfos.add(panelCardInfos, new CC().growX().gapTop("20").spanX());
 		panelUserInfos.add(new JSeparator(), new CC().gapTop("20").growX().spanX().wrap());
-		
+
 		JButton btnCheckout = new JButton("Continue to checkout");
 		btnCheckout.setFont(btnCheckout.getFont().deriveFont(20f));
 		panelUserInfos.add(btnCheckout, new CC().gapTop("20").growX().spanX());
-		
-		return panelUserInfos;
-	}
 
-	private Component createLabel(String text, Color foreground) {
-		JLabel label = new JLabel(text);
-		label.setForeground(foreground);
-		return label;
+		return panelUserInfos;
 	}
 
 	private Component createSpinnerYear() {
@@ -232,18 +221,10 @@ public class CheckoutPageTest extends JFrame {
 	}
 
 	private Component createZipTextField() {
-		MaskFormatter mask = null;
 		try {
-			mask = new MaskFormatter("#####-###");
+			return new JFormattedTextField(new MaskFormatter("#####-###"));
 		} catch (ParseException e) {}
-		JFormattedTextField ftf = new JFormattedTextField(mask);
-		return ftf;
-	}
-
-	private Component createCardMsgLabel() {
-		JLabel label = new JLabel("Full name as displayed on card");
-		label.setForeground(Color.GRAY);
-		return label;
+		return new JTextField("Create zip mask error!");
 	}
 
 	private Component createCheck(String text) {
@@ -259,53 +240,28 @@ public class CheckoutPageTest extends JFrame {
 		return rb;
 	}
 
-	private Component createStateCombo() {
-		return new JComboBox<>(new String[]{
-				"", "Rio Grande do Sul", "Santa Cataria", "Parana", "São Paulo", "Rio de Janeiro"});
-	}
-
-	private Component createCountryCombo() {
-		return new JComboBox<>(new String[]{"","Brazil", "Other"});
-	}
-	
-	private Component createCartTitleLabel() {
-		JLabel label = new JLabel("Your cart");
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 24f));
-		return label;
-	}
-
-	private Component createUserInfoTitleLabel() {
-		JLabel label = new JLabel("Billing address");
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 24f));
-		return label;
-	}
-	
-	private Component createPaymentTitleLabel() {
-		JLabel label = new JLabel("Payment");
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 24f));
-		return label;
-	}
-
 	private Component createSubTitleLabel() {
-		JLabel label = new JLabel("<html><p style=\"text-align: center;\">Below is an example form using the WebLookAndFeel styles. The form was copied from an example of Bootstrap page, and was basically built with MigLayout. Note: It's just a demonstration, the buttons will not do anything.</p></html>");
-		label.setFont(label.getFont().deriveFont(16f));
-		return label;
+		return new LB().html("<p style=\"text-align: center;\">"
+						+ "Below is an example form using the WebLookAndFeel styles. "
+						+ "The form was copied from an example of Bootstrap page, and was basically built with MigLayout. "
+						+ "Note: It's just a demonstration, the buttons will not do anything."
+						+ "</p>").font(16f);
 	}
 
 	private Component createTitleLabel() {
-		JLabel label = new JLabel("Checkout form");
-		label.setIcon(IconUtils.getImageIcon("checkout.png"));
-		label.setFont(label.getFont().deriveFont(Font.BOLD, 32f));
-		label.setHorizontalTextPosition(JLabel.CENTER);
-		label.setVerticalTextPosition(JLabel.BOTTOM);
-		return label;
+		return new LB("Checkout form")
+				.icon(IconUtils.getImageIcon("checkout.png"))
+				.font(Font.BOLD, 32f)
+				.textPos(JLabel.CENTER, JLabel.BOTTOM);
 	}
 	
-	private Component createFooterLabel() {
-		JLabel label = new JLabel("© 2017-2018 Company Name");
-		label.setForeground(Color.GRAY);
-		label.setFont(label.getFont().deriveFont(16f));
-		return label;
+	private JLabel createCartItemCountLabel() {
+		return new LB("3")
+				.hAlign(JLabel.CENTER)
+				.border(new WebBorder(1).color(Color.DARK_GRAY))
+				.font(Font.BOLD, 24f)
+				.bg(Color.DARK_GRAY)
+				.fg(Color.WHITE);
 	}
 
 }

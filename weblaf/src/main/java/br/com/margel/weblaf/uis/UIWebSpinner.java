@@ -10,9 +10,9 @@ import java.awt.font.FontRenderContext;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JSpinner.DefaultEditor;
+import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -35,14 +35,13 @@ public class UIWebSpinner extends BasicSpinnerUI {
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
-		spinner.setOpaque(false);
 		webBorder = new WebBorder(WebTheme.TEXT_FIELD_BORDER_INSETS).paintFocus(true)
 				.arcSize(WebTheme.TEXT_FIELD_BORDER_ROUND);
 		spinner.setBorder(webBorder);
+		spinner.setOpaque(true);
+		spinner.setBackground(WebTheme.TEXT_FIELD_BG);
 		removeEditorBorder();
-		spinner.addPropertyChangeListener("editor", evt -> {
-			removeEditorBorder();
-		});
+		spinner.addPropertyChangeListener("editor", evt -> removeEditorBorder());
 	}
 
 	private void removeEditorBorder() {
@@ -104,7 +103,7 @@ public class UIWebSpinner extends BasicSpinnerUI {
 		installPreviousButtonListeners(c);
 		return c;
 	}
-
+	
 	protected JButton createButton(int orientation) {
 		JButton b = new JButton();
 		b.setBorder(new EmptyBorder(0, 1, 0, 1));

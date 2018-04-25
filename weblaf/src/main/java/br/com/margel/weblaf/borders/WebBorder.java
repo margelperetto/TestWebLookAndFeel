@@ -20,16 +20,20 @@ public class WebBorder extends EmptyBorder{
 	private boolean paintFocus;
 	private Color fixedColor;
 
+	public WebBorder(Insets borderInsets) {
+		super(borderInsets);
+	}
+	
 	public WebBorder(int top, int left, int bottom, int right) {
-		super(new Insets(top, left, bottom, right));
+		this(new Insets(top, left, bottom, right));
 	}
 	
 	public WebBorder() {
-		super(new Insets(10, 12, 10, 12));
+		this(10, 12, 10, 12);
 	}
 	
-	public WebBorder(Insets borderInsets) {
-		super(borderInsets);
+	public WebBorder(int insetsAll) {
+		this(insetsAll,insetsAll,insetsAll,insetsAll);
 	}
 
 	@Override
