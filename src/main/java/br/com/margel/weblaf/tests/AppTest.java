@@ -63,7 +63,8 @@ public class AppTest extends JFrame {
 
 	public static void main( String[] args ) {
     	try {
-			UIManager.setLookAndFeel(new WebLookAndFeel());
+    		UIManager.setLookAndFeel(new WebLookAndFeel());
+			//UIManager.setLookAndFeel(new javax.swing.plaf.nimbus.NimbusLookAndFeel());
     		//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			new AppTest().setVisible(true);
 		} catch (Exception e) {

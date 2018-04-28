@@ -222,7 +222,7 @@ public class ComplexFormTest extends JFrame{
 		pCardDash.add(new JLabel(IconUtils.getImageIcon("item_dash"+index+"_50x50.PNG")), new CC().alignX("center").gapBottom("20"));
 		pCardDash.add(createLabel("Item dashboard "+index, Color.decode("#04b7a8"), Font.BOLD, 12f), new CC().alignX("center"));
 		pCardDash.add(createLabel("This is a simple text description for a ", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
-		pCardDash.add(createLabel("dashboard card. Dothing will happend", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
+		pCardDash.add(createLabel("dashboard card. Nothing will happend", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
 		pCardDash.add(createLabel("when you click here, it's just a test.", Color.decode("#bdbdbf"), 12f), new CC().alignX("center"));
 		pCardDash.add(createNonOpaqueBtn("Button"), new CC().alignX("center").gapTop("20").width("150").height("50"));
 		pCardDash.setPreferredSize(new Dimension(250, 0));
@@ -467,6 +467,7 @@ public class ComplexFormTest extends JFrame{
 			content.removeAll();
 			content.add(component);
 			content.revalidate();
+			content.repaint();
 			
 			LAST_CLICKED.put(content, itemComp);
 			itemComp.repaint();
