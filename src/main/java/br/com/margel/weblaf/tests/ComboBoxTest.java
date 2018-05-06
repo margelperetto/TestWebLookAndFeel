@@ -23,12 +23,14 @@ public class ComboBoxTest extends JDialog {
 		combo2.setEnabled(false);
 		
 		setLayout(new MigLayout(new LC().minWidth("300").wrapAfter(2).gridGapY("20").insetsAll("50")));
+		add(new JTextField("Align ok"), new CC().width("100%"));
+		add(new JTextField("Test focus here"), new CC().width("100%"));
 		add(combo0, new CC().width("100%"));
-		add(new JTextField(), new CC().width("100%"));
+		add(new JTextField("Test 1"), new CC().width("100%"));
 		add(combo1, new CC().width("100%"));
-		add(new JTextField(), new CC().width("100%"));
+		add(new JTextField("Test 2"), new CC().width("100%"));
 		add(combo2, new CC().width("100%"));
-		add(new JTextField(), new CC().width("100%"));
+		add(new JTextField("Test 3"), new CC().width("100%"));
 		
 		setTitle("App Test");
 		pack();

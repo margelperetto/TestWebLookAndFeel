@@ -1,6 +1,7 @@
 package br.com.margel.weblaf.tests;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
+import br.com.margel.weblaf.borders.WebBorder;
 import br.com.margel.weblaf.utils.IconUtils;
 import net.miginfocom.layout.CC;
 import net.miginfocom.layout.LC;
@@ -68,7 +70,8 @@ public class ButtonTest extends JDialog{
 		add(btnOpaque, new CC().gapTop("50"));
 		add(new JButton("Icon 15x15", IconUtils.arrowIcon(new Dimension(15, 15), SwingConstants.NORTH, 2, Color.WHITE)), new CC().gapTop("50"));
 		add(new JButton("Icon Buttom", IconUtils.getImageIcon("home25x25.png")), new CC().gapTop("50"));
-		add(btnBorderCustom, new CC().gapTop("50"));
+		add(btnBorderCustom, new CC().gapTop("50").wrap());
+		add(createDarkPanelBtn(), new CC().growX().gapTop("50"));
 		
 		setTitle("Button Test");
 		pack();
@@ -77,6 +80,29 @@ public class ButtonTest extends JDialog{
 		setLocationRelativeTo(null);
 	}
 	
+	private Component createDarkPanelBtn() {
+		JButton btn = new JButton("Test dark background");
+		btn.setBackground(Color.CYAN.darker().darker());
+		btn.setForeground(Color.WHITE);
+		btn.setBorder(new WebBorder().arcSize(20));
+		
+		JButton btn2 = new JButton("Test dark background opaque");
+		btn2.setBackground(Color.GREEN.darker().darker());
+		btn2.setForeground(Color.WHITE);
+		btn2.setBorder(new WebBorder().arcSize(20));
+		
+		JPanel panel2 = new JPanel(new MigLayout(new LC().insetsAll("15")));
+		panel2.setOpaque(false);
+		panel2.add(btn2);
+		
+		JPanel panel = new JPanel(new MigLayout(new LC().insetsAll("15")));
+		panel.setOpaque(true);
+		panel.setBackground(Color.DARK_GRAY);
+		panel.add(btn);
+		panel.add(panel2);
+		return panel;
+	}
+
 	private JCheckBox createCheckBox(String text, ActionValueChange action) {
 		JCheckBox ckb = new JCheckBox(text);
 		ckb.setFocusable(false);
